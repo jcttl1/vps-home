@@ -695,11 +695,16 @@ window.VPS_PORTFOLIO = {
 
 <script>
 (function(){
-  function postH(){ try{ parent.postMessage({vpsHomeHeight: document.documentElement.scrollHeight}, '*'); }catch(e){} }
-  window.addEventListener('load', postH);
-  window.addEventListener('resize', postH);
-  window.addEventListener('message', function(e){ if(e&&e.data&&e.data.vpsQuoteHeight){ setTimeout(postH,60); } });
-  var n=0, t=setInterval(function(){ postH(); if(++n>30) clearInterval(t); }, 400);
+  var last = 0;
+  function measure(){
+    // content height only (body box), NOT the viewport-filling documentElement
+    var h = Math.ceil(document.body.getBoundingClientRect().height);
+    if (h && Math.abs(h - last) > 1){ last = h; try{ parent.postMessage({vpsHomeHeight: h}, '*'); }catch(e){} }
+  }
+  window.addEventListener('load', measure);
+  window.addEventListener('resize', function(){ setTimeout(measure, 80); });
+  window.addEventListener('message', function(e){ if(e && e.data && e.data.vpsQuoteHeight){ setTimeout(measure, 90); } });
+  var n=0, t=setInterval(function(){ measure(); if(++n>40) clearInterval(t); }, 350);
 })();
 </script>
 </body>
