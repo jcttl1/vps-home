@@ -1,301 +1,800 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Request a Quote — Velocity Pro Sims</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Saira:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<style>
-  :root{
-    --green:#4C8C1E;--green-d:#3c7016;--ink:#15180F;--muted:#566050;
-    --line:#E0E3D8;--card:#ffffff;--display:'Rajdhani',sans-serif;--body:'Saira',system-ui,sans-serif;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:transparent;color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
-  .qf{max-width:1500px;margin:0 auto}
-  .qf-block{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 26px 28px;margin-bottom:20px;box-shadow:0 10px 26px rgba(20,30,10,.05)}
-  .qf-block h3{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.03em;font-size:1.4rem;color:var(--ink)}
-  .qf-block .hint{color:var(--muted);font-size:.95rem;margin:.15rem 0 1.1rem}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .grid .full{grid-column:1 / -1}
-  @media(max-width:600px){.grid{grid-template-columns:1fr}}
-  label{display:block;font-weight:600;font-size:.9rem;margin-bottom:.35rem;color:var(--ink)}
-  label .req{color:var(--green-d)}
-  input,select,textarea{width:100%;font-family:var(--body);font-size:1rem;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:9px;padding:.7rem .8rem;transition:border-color .15s ease}
-  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green)}
-  textarea{min-height:110px;resize:vertical}
-  select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23566050' stroke-width='2.5'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right .8rem center;padding-right:2.2rem}
-  .err{color:#b3261e;font-size:.82rem;margin-top:.3rem;display:none}
-  .field.invalid input,.field.invalid select{border-color:#b3261e}
-  .field.invalid .err{display:block}
-  .submit-row{text-align:center;padding:6px 0 4px}
-  .qf-btn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:1.3rem;color:#fff;background:var(--green);border:none;border-radius:10px;padding:1rem 2.4rem;cursor:pointer;box-shadow:0 8px 24px rgba(76,140,30,.3);transition:background .15s ease,transform .15s ease}
-  .qf-btn:hover{background:var(--green-d);transform:translateY(-2px)}
-  .qf-btn:disabled{opacity:.6;cursor:default;transform:none}
-  .field .help{display:block;font-size:.82rem;line-height:1.4;color:var(--muted);font-weight:400;margin:0 0 7px}
-  .submit-note{color:var(--muted);font-size:.9rem;margin-top:.7rem}
-  .qf-status{text-align:center;font-weight:600;margin-top:14px;min-height:1.2em}
-  .qf-status.error{color:#b3261e}
-  /* success */
-  .qf-success{display:none;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:48px 30px;box-shadow:0 10px 26px rgba(20,30,10,.05)}
-  .qf-success .check{width:74px;height:74px;border-radius:50%;background:rgba(76,140,30,.14);color:var(--green);display:grid;place-items:center;margin:0 auto 18px}
-  .qf-success .check svg{width:40px;height:40px}
-  .qf-success h3{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:2rem;color:var(--ink);margin-bottom:.5rem}
-  .qf-success p{color:var(--muted);max-width:46ch;margin:0 auto}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Quote — Velocity Pro Sims</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #5CBF2A;
+      --green-light: #7DD94D;
+      --green-dim: rgba(92,191,42,0.12);
+      --bg-primary: #0A0A0C;
+      --bg-secondary: #111114;
+      --bg-card: #16161A;
+      --bg-input: #1E1E24;
+      --border: rgba(255,255,255,0.08);
+      --border-light: rgba(255,255,255,0.14);
+      --text-primary: #EAEAEA;
+      --text-secondary: #A1A1AA;
+      --text-muted: #6B7280;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --transition: 0.2s ease;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .form-header {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+    .form-header img { height: 36px; }
+    .form-header-text { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: 1.5px; color: var(--text-primary); text-transform: uppercase; }
+
+    /* Container */
+    .form-container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    /* Hero */
+    .form-hero {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .form-hero h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .form-hero p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* Sections */
+    .form-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 6px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .section-header .section-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Form grid */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-grid .full { grid-column: 1 / -1; }
+    @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+
+    /* Fields */
+    .field-group { display: flex; flex-direction: column; gap: 4px; align-items: center; text-align: center; }
+    .field-group label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #A1A1AA !important;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .field-group label .required { color: #5CBF2A !important; margin-left: 2px; }
+    .field-group input,
+    .field-group select,
+    .field-group textarea {
+      padding: 10px 14px !important;
+      background: #1E1E24 !important;
+      border: 1px solid rgba(255,255,255,0.08) !important;
+      border-radius: 8px !important;
+      color: #EAEAEA !important;
+      font-size: 0.92rem !important;
+      font-family: 'Inter', sans-serif !important;
+      transition: border-color 0.2s ease !important;
+      outline: none !important;
+      width: 100% !important;
+      -webkit-text-fill-color: #EAEAEA !important;
+      color-scheme: dark !important;
+    }
+    .field-group input:focus,
+    .field-group select:focus,
+    .field-group textarea:focus {
+      border-color: #5CBF2A !important;
+    }
+    .field-group textarea { resize: vertical; min-height: 80px; }
+    .field-group select { cursor: pointer !important; appearance: none !important; -webkit-appearance: none !important; -moz-appearance: none !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6.5 6.5 6.5-6.5'/%3E%3C/svg%3E") !important; background-repeat: no-repeat !important; background-position: right 12px center !important; padding-right: 32px !important; }
+    .field-group select option { background: #1E1E24 !important; color: #EAEAEA !important; -webkit-text-fill-color: #EAEAEA !important; }
+    .field-hint { font-size: 0.76rem; color: var(--text-muted); margin-top: 2px; }
+
+    /* Checkbox row */
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition);
+      user-select: none;
+    }
+    .check-row:hover { border-color: var(--border-light); }
+    .check-row.checked { border-color: var(--green); background: var(--green-dim); }
+    .check-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 2px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all var(--transition);
+      color: transparent;
+      font-size: 0.7rem;
+    }
+    .check-row.checked .check-box {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+    }
+    .check-label { font-size: 0.9rem; color: var(--text-primary); font-weight: 500; }
+    .check-sub { font-size: 0.78rem; color: var(--text-muted); }
+
+    /* Tri-state (Yes / No / Not Sure) */
+    .tri-state {
+      display: flex;
+      gap: 6px;
+    }
+    .tri-btn {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-input);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .tri-btn:hover { border-color: var(--border-light); color: var(--text-secondary); }
+    .tri-btn.active-yes { background: rgba(92,191,42,0.15); border-color: var(--green); color: var(--green); }
+    .tri-btn.active-no { background: rgba(239,68,68,0.12); border-color: #ef4444; color: #ef4444; }
+    .tri-btn.active-unsure { background: rgba(245,158,11,0.12); border-color: #f59e0b; color: #f59e0b; }
+
+    /* Submit */
+    .submit-section { text-align: center; margin-top: 28px; }
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 48px;
+      background: var(--green);
+      color: #000;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1.05rem;
+      font-weight: 700;
+      font-family: 'Rajdhani', sans-serif;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all var(--transition);
+      text-transform: uppercase;
+    }
+    .submit-btn:hover { background: var(--green-light); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(92,191,42,0.3); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+    .submit-note { font-size: 0.82rem; color: var(--text-muted); margin-top: 10px; }
+
+    /* Success state */
+    .success-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(92,191,42,0.3);
+      border-radius: var(--radius);
+      padding: 48px 32px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .success-card .icon { font-size: 3rem; color: var(--green); margin-bottom: 16px; }
+    .success-card h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.6rem; margin-bottom: 8px; }
+    .success-card p { color: var(--text-secondary); max-width: 460px; margin: 0 auto; }
+    .success-card .ref { font-family: monospace; font-size: 1rem; color: var(--green); background: var(--green-dim); padding: 6px 16px; border-radius: var(--radius-sm); display: inline-block; margin-top: 16px; letter-spacing: 1px; }
+
+    /* Footer */
+    .form-footer {
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .form-footer a { color: var(--green); text-decoration: none; }
+    .form-footer a:hover { text-decoration: underline; }
+
+    /* Validation */
+    .field-group.error input,
+    .field-group.error select,
+    .field-group.error textarea { border-color: #ef4444; }
+    .field-group .error-msg { color: #ef4444; font-size: 0.76rem; display: none; }
+    .field-group.error .error-msg { display: block; }
+  </style>
 </head>
 <body>
 
-<form class="qf" id="quoteForm" novalidate>
-
-  <div class="qf-block">
-    <h3>Contact Information</h3>
-    <p class="hint">How can we reach you?</p>
-    <div class="grid">
-      <div class="field"><label>First Name <span class="req">*</span></label><input type="text" name="first_name" required><div class="err">Please enter your first name</div></div>
-      <div class="field"><label>Last Name <span class="req">*</span></label><input type="text" name="last_name" required><div class="err">Please enter your last name</div></div>
-      <div class="field"><label>Email <span class="req">*</span></label><input type="email" name="email" required><div class="err">Please enter a valid email</div></div>
-      <div class="field"><label>Phone <span class="req">*</span></label><input type="tel" name="phone" required><div class="err">Please enter your phone number</div></div>
-      <div class="field"><label>Company</label><input type="text" name="company"></div>
-      <div class="field"><label>Location / Address</label><input type="text" name="location"></div>
-    </div>
-  </div>
-
-  <div class="qf-block">
-    <h3>About Your Build</h3>
-    <p class="hint">Help us understand what you're looking for</p>
-    <div class="grid">
-      <div class="field"><label>Intended Use <span class="req">*</span></label>
-        <small class="help">Who it's for and where it'll live — your home, a business, events, training, etc.</small>
-        <select name="intended_use" required>
-          <option value="">— Select —</option>
-          <option>Personal / Home Use</option><option>Commercial / Business</option><option>Racing Team</option>
-          <option>Entertainment Venue</option><option>Corporate Events</option><option>Training / Driver Development</option><option>Other</option>
-        </select><div class="err">Please select an intended use</div></div>
-      <div class="field"><label>Budget Range</label>
-        <small class="help">A rough idea of what you'd like to spend — we build to fit your budget.</small>
-        <select name="budget">
-          <option value="">— Select —</option>
-          <option>Under $5,000</option><option>$5,000 – $10,000</option><option>$10,000 – $20,000</option>
-          <option>$20,000 – $35,000</option><option>$35,000 – $50,000</option><option>$50,000+</option><option>Not sure yet</option>
-        </select></div>
-      <div class="field"><label>Timeline</label>
-        <small class="help">When you'd like to have it.</small>
-        <select name="timeline">
-          <option value="">— Select —</option>
-          <option>As soon as possible</option><option>1–2 weeks</option><option>Within a month</option>
-          <option>2–3 months</option><option>Flexible / No rush</option><option>Just exploring options</option>
-        </select></div>
-      <div class="field"><label>Number of Simulators</label>
-        <small class="help">How many setups you need.</small>
-        <select name="quantity">
-          <option>1 Simulator</option><option>2 Simulators</option><option>3 Simulators</option><option>4 Simulators</option><option>5+ Simulators</option>
-        </select></div>
-    </div>
-  </div>
-
-  <div class="qf-block">
-    <h3>Cockpit &amp; Seating</h3>
-    <p class="hint">Select "Not sure" if you'd like our recommendation</p>
-    <div class="grid">
-      <div class="field"><label>Chassis Preference</label>
-        <small class="help">The frame you sit in. GT sits you upright like a sports car; Formula reclines you like an F1 car.</small>
-        <select name="chassis"><option value="">— Select —</option><option>GT</option><option>Formula</option><option>Not Sure Yet</option></select></div>
-      <div class="field"><label>Monitor Mount</label>
-        <small class="help">How the screen(s) are held up — on the rig itself or on a separate stand.</small>
-        <select name="monitor_mount">
-          <option>Not sure / Open to suggestion</option><option>Single Free-Standing</option><option>Triple Free-Standing</option>
-          <option>Integrated Single</option><option>Integrated Free-Standing</option><option>Other (specify in notes)</option>
-        </select></div>
-      <div class="field full"><label>Seat Preferences</label>
-        <small class="help">Any seat style, size, or color you have in mind — totally optional.</small>
-        <input type="text" name="seat" placeholder="Brand, size, color, reclining…"></div>
-    </div>
-  </div>
-
-  <div class="qf-block">
-    <h3>Controls &amp; Input</h3>
-    <p class="hint">Steering, pedals, and accessories</p>
-    <div class="grid">
-      <div class="field"><label>Wheel / Motor</label>
-        <small class="help">The motor the wheel attaches to. "Direct drive" gives the most realistic force feedback.</small>
-        <input type="text" name="wheel_motor" placeholder="e.g. direct drive, brand"></div>
-      <div class="field"><label>Steering Wheel</label>
-        <small class="help">The wheel you hold — round for GT cars, flat-bottom for Formula.</small>
-        <input type="text" name="steering_wheel" placeholder="GT, Formula, brand…"></div>
-      <div class="field"><label>Pedals</label>
-        <small class="help">Gas, brake, and clutch. "Load cell" pedals feel like a real car's brake.</small>
-        <input type="text" name="pedals" placeholder="2 or 3 pedal, load cell…"></div>
-      <div class="field"><label>Shifter</label>
-        <small class="help">A separate gear lever, like a manual stick shift. Optional.</small>
-        <select name="shifter"><option>Not sure</option><option>Yes, I want a shifter</option><option>No shifter needed</option></select></div>
-      <div class="field"><label>Handbrake</label>
-        <small class="help">A pull lever for sliding the car — great for rally and drift. Optional.</small>
-        <select name="handbrake"><option>Not sure</option><option>Yes, I want a handbrake</option><option>No handbrake needed</option></select></div>
-      <div class="field"><label>Button Box</label>
-        <small class="help">Extra buttons and switches for in-car controls. Optional.</small>
-        <select name="button_box"><option>Not sure</option><option>Yes, I want a button box</option><option>No button box needed</option></select></div>
-    </div>
-  </div>
-
-  <div class="qf-block">
-    <h3>Display &amp; Technology</h3>
-    <p class="hint">Screens, PC, and visual setup</p>
-    <div class="grid">
-      <div class="field"><label>Screen Setup</label>
-        <small class="help">How you'll see the track — one screen, a big ultrawide, three screens, or VR.</small>
-        <select name="screen_setup">
-          <option>Not sure / Open to suggestion</option><option>Single Screen</option><option>Ultrawide 49"</option>
-          <option>Triple Screens</option><option>VR Only</option><option>Other (specify in notes)</option>
-        </select></div>
-      <div class="field"><label>VR Headset</label>
-        <small class="help">A headset for a fully immersive, look-around view — instead of or alongside screens.</small>
-        <select name="vr"><option>Not sure</option><option>Yes, I want VR</option><option>Yes, in addition to screens</option><option>No VR needed</option></select></div>
-      <div class="field full"><label>PC Preferences</label>
-        <small class="help">The computer that runs everything. Give us a budget or leave it to us.</small>
-        <input type="text" name="pc" placeholder="Budget, GPU, anything specific…"></div>
-    </div>
-  </div>
-
-  <div class="qf-block">
-    <h3>Immersion &amp; Motion</h3>
-    <p class="hint">Haptics, motion platforms, and audio</p>
-    <div class="grid">
-      <div class="field"><label>Haptics / Tactile Feedback</label>
-        <small class="help">Vibrations you feel through the seat — bumps, the engine, losing grip.</small>
-        <select name="haptics"><option>Not Sure</option><option>Yes</option><option>No</option></select></div>
-      <div class="field"><label>Motion Platform</label>
-        <small class="help">The whole rig physically tilts and moves as you drive — the most immersive option.</small>
-        <select name="motion"><option>Not Sure</option><option>Yes</option><option>No</option></select></div>
-      <div class="field full"><label>Audio</label>
-        <small class="help">How you'll hear it — headphones, speakers, or full surround sound.</small>
-        <select name="audio">
-          <option>Not sure / Open to suggestion</option><option>Headphones</option><option>Standard Speakers</option>
-          <option>Premium Surround Sound</option><option>Other (specify in notes)</option>
-        </select></div>
-    </div>
-  </div>
-
-  <div class="qf-block">
-    <h3>Services &amp; Delivery</h3>
-    <p class="hint">Build, delivery, and installation options</p>
-    <div class="grid">
-      <div class="field"><label>Professional Build &amp; Assembly</label>
-        <small class="help">We build and assemble it for you, or you put it together yourself.</small>
-        <select name="build_assembly"><option>Not Sure</option><option>Yes</option><option>No, I'll build it</option></select></div>
-      <div class="field"><label>Delivery Needed?</label>
-        <small class="help">We deliver (and can set it up), or you pick it up from us.</small>
-        <select name="delivery"><option>Not Sure</option><option>Yes</option><option>No, I'll pick up</option></select></div>
-      <div class="field full"><label>Delivery / Installation Address</label>
-        <small class="help">Where we'd ship or set it up, if applicable.</small>
-        <input type="text" name="delivery_address"></div>
-    </div>
-  </div>
-
-  <div class="qf-block">
-    <h3>Additional Notes</h3>
-    <p class="hint">Anything else we should know?</p>
-    <div class="field"><textarea name="notes" placeholder="Tell us anything that will help us build your perfect setup…"></textarea></div>
-  </div>
-
-  <div class="submit-row">
-    <button type="submit" class="qf-btn" id="qfSubmit">Submit Quote Request</button>
-    <p class="submit-note">We typically respond within 1–2 business days.</p>
-    <p class="qf-status" id="qfStatus"></p>
-  </div>
-</form>
-
-<div class="qf-success" id="qfSuccess">
-  <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-  <h3>Quote Request Submitted!</h3>
-  <p>Thank you for your interest in a custom Velocity Pro Sims racing simulator. Our team will review your request and get back to you within 1–2 business days.</p>
+<div class="form-header">
+  <img src="logo.png" alt="Velocity Pro Sims" onerror="this.style.display='none'">
+  <div class="form-header-text">Request a Quote</div>
 </div>
 
+<div class="form-container" id="formContainer">
+
+  <div class="form-hero">
+    <h1>Build Your Dream Racing Simulator</h1>
+    <p>Tell us about what you're looking for and we'll put together a custom quote tailored to your needs.</p>
+  </div>
+
+  <!-- ═══ CONTACT INFO ═══ -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(92,191,42,0.12);color:#5CBF2A;"><i class="fas fa-user"></i></div>
+      <div><h2>Contact Information</h2><div class="section-sub">How can we reach you?</div></div>
+    </div>
+    <div class="form-grid">
+      <div class="field-group">
+        <label>First Name <span class="required">*</span></label>
+        <input type="text" id="rq_firstName" placeholder="John" required>
+        <span class="error-msg">Please enter your first name</span>
+      </div>
+      <div class="field-group">
+        <label>Last Name <span class="required">*</span></label>
+        <input type="text" id="rq_lastName" placeholder="Doe" required>
+        <span class="error-msg">Please enter your last name</span>
+      </div>
+      <div class="field-group">
+        <label>Email <span class="required">*</span></label>
+        <input type="email" id="rq_email" placeholder="john@example.com" required>
+        <span class="error-msg">Please enter a valid email</span>
+      </div>
+      <div class="field-group">
+        <label>Phone <span class="required">*</span></label>
+        <input type="tel" id="rq_phone" placeholder="(555) 123-4567" required>
+        <span class="error-msg">Please enter your phone number</span>
+      </div>
+      <div class="field-group">
+        <label>Company</label>
+        <input type="text" id="rq_company" placeholder="Company name (optional)">
+      </div>
+      <div class="field-group">
+        <label>Location / Address</label>
+        <input type="text" id="rq_address" placeholder="City, State or full address">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ABOUT YOUR BUILD ═══ -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(59,130,246,0.12);color:#3B82F6;"><i class="fas fa-bullseye"></i></div>
+      <div><h2>About Your Build</h2><div class="section-sub">Help us understand what you're looking for</div></div>
+    </div>
+    <div class="form-grid">
+      <div class="field-group">
+        <label>Intended Use <span class="required">*</span></label>
+        <select id="rq_intendedUse">
+          <option value="">— Select —</option>
+          <option value="personal">Personal / Home Use</option>
+          <option value="commercial">Commercial / Business</option>
+          <option value="racing-team">Racing Team</option>
+          <option value="entertainment-venue">Entertainment Venue</option>
+          <option value="corporate-events">Corporate Events</option>
+          <option value="training">Training / Driver Development</option>
+          <option value="other">Other</option>
+        </select>
+        <span class="error-msg">Please select an intended use</span>
+      </div>
+      <div class="field-group">
+        <label>Budget Range</label>
+        <select id="rq_budget">
+          <option value="">— Select —</option>
+          <option value="under-5k">Under $5,000</option>
+          <option value="5k-10k">$5,000 – $10,000</option>
+          <option value="10k-20k">$10,000 – $20,000</option>
+          <option value="20k-35k">$20,000 – $35,000</option>
+          <option value="35k-50k">$35,000 – $50,000</option>
+          <option value="50k-plus">$50,000+</option>
+          <option value="unsure">Not sure yet</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Timeline</label>
+        <select id="rq_timeline">
+          <option value="">— Select —</option>
+          <option value="asap">As soon as possible</option>
+          <option value="1-2weeks">1–2 weeks</option>
+          <option value="1month">Within a month</option>
+          <option value="2-3months">2–3 months</option>
+          <option value="flexible">Flexible / No rush</option>
+          <option value="just-exploring">Just exploring options</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Number of Simulators</label>
+        <select id="rq_numSims">
+          <option value="1">1 Simulator</option>
+          <option value="2">2 Simulators</option>
+          <option value="3">3 Simulators</option>
+          <option value="4">4 Simulators</option>
+          <option value="5+">5+ Simulators</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ COCKPIT & SEATING ═══ -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(236,72,153,0.12);color:#EC4899;"><i class="fas fa-chair"></i></div>
+      <div><h2>Cockpit &amp; Seating</h2><div class="section-sub">Select "Not sure" if you'd like our recommendation</div></div>
+    </div>
+    <div class="form-grid">
+      <div class="field-group">
+        <label>Chassis Preference</label>
+        <select id="rq_chassis">
+          <option value="">— Select —</option>
+          <option value="GT">GT</option>
+          <option value="Formula">Formula</option>
+          <option value="not-sure">Not Sure Yet</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Monitor Mount</label>
+        <select id="rq_monitorMount">
+          <option value="">Not sure / Open to suggestion</option>
+          <option value="Single Free-Standing">Single Free-Standing</option>
+          <option value="Triple Free-Standing">Triple Free-Standing</option>
+          <option value="Integrated Single">Integrated Single</option>
+          <option value="Integrated Free-Standing">Integrated Free-Standing</option>
+          <option value="other">Other (specify in notes)</option>
+        </select>
+      </div>
+      <div class="field-group full">
+        <label>Seat Preferences</label>
+        <input type="text" id="rq_seatPrefs" placeholder="Any seat brand/style preference? (e.g. bucket seat, GT seat, specific brand)">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CONTROLS & INPUT ═══ -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(139,92,246,0.12);color:#8B5CF6;"><i class="fas fa-gamepad"></i></div>
+      <div><h2>Controls &amp; Input</h2><div class="section-sub">Steering, pedals, and accessories</div></div>
+    </div>
+    <div class="form-grid">
+      <div class="field-group">
+        <label>Wheel / Motor</label>
+        <input type="text" id="rq_wheelMotor" placeholder="Any preference? (e.g. Fanatec, Simucube, Moza)">
+      </div>
+      <div class="field-group">
+        <label>Steering Wheel</label>
+        <input type="text" id="rq_steeringWheel" placeholder="Wheel preference? (e.g. round, GT, formula)">
+      </div>
+      <div class="field-group">
+        <label>Pedals</label>
+        <input type="text" id="rq_pedals" placeholder="Pedal preference? (e.g. Heusinkveld, Fanatec)">
+      </div>
+      <div class="field-group">
+        <label>Shifter</label>
+        <select id="rq_shifter">
+          <option value="">Not sure</option>
+          <option value="yes">Yes, I want a shifter</option>
+          <option value="no">No shifter needed</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Handbrake</label>
+        <select id="rq_handbrake">
+          <option value="">Not sure</option>
+          <option value="yes">Yes, I want a handbrake</option>
+          <option value="no">No handbrake needed</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Button Box</label>
+        <select id="rq_buttonBox">
+          <option value="">Not sure</option>
+          <option value="yes">Yes, I want a button box</option>
+          <option value="no">No button box needed</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ DISPLAY & TECHNOLOGY ═══ -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(6,182,212,0.12);color:#06B6D4;"><i class="fas fa-desktop"></i></div>
+      <div><h2>Display &amp; Technology</h2><div class="section-sub">Screens, PC, and visual setup</div></div>
+    </div>
+    <div class="form-grid">
+      <div class="field-group">
+        <label>Screen Setup</label>
+        <select id="rq_screenOption">
+          <option value="">Not sure / Open to suggestion</option>
+          <option value="Single Screen">Single Screen</option>
+          <option value="Ultrawide 49">Ultrawide 49"</option>
+          <option value="Triple Screens">Triple Screens</option>
+          <option value="VR Only">VR Only</option>
+          <option value="other">Other (specify in notes)</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>VR Headset</label>
+        <select id="rq_vr">
+          <option value="">Not sure</option>
+          <option value="yes">Yes, I want VR</option>
+          <option value="addon">Yes, in addition to screens</option>
+          <option value="no">No VR needed</option>
+        </select>
+      </div>
+      <div class="field-group full">
+        <label>PC Preferences</label>
+        <input type="text" id="rq_pcPrefs" placeholder="Any PC spec preferences? (e.g. high-end, mid-range, specific GPU)">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ IMMERSION & MOTION ═══ -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(245,158,11,0.12);color:#F59E0B;"><i class="fas fa-wave-square"></i></div>
+      <div><h2>Immersion &amp; Motion</h2><div class="section-sub">Haptics, motion platforms, and audio</div></div>
+    </div>
+    <div class="form-grid">
+      <div class="field-group">
+        <label>Haptics / Tactile Feedback</label>
+        <div class="tri-state" id="rq_haptics">
+          <div class="tri-btn" onclick="setTri(this,'yes')">Yes</div>
+          <div class="tri-btn" onclick="setTri(this,'no')">No</div>
+          <div class="tri-btn active-unsure" onclick="setTri(this,'unsure')">Not Sure</div>
+        </div>
+      </div>
+      <div class="field-group">
+        <label>Motion Platform</label>
+        <div class="tri-state" id="rq_motion">
+          <div class="tri-btn" onclick="setTri(this,'yes')">Yes</div>
+          <div class="tri-btn" onclick="setTri(this,'no')">No</div>
+          <div class="tri-btn active-unsure" onclick="setTri(this,'unsure')">Not Sure</div>
+        </div>
+      </div>
+      <div class="field-group">
+        <label>Audio</label>
+        <select id="rq_audio">
+          <option value="">Not sure / Open to suggestion</option>
+          <option value="Headphones">Headphones</option>
+          <option value="Standard Speakers">Standard Speakers</option>
+          <option value="Premium Surround">Premium Surround Sound</option>
+          <option value="other">Other (specify in notes)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SERVICES & DELIVERY ═══ -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(16,185,129,0.12);color:#10B981;"><i class="fas fa-truck"></i></div>
+      <div><h2>Services &amp; Delivery</h2><div class="section-sub">Build, delivery, and installation options</div></div>
+    </div>
+    <div class="form-grid">
+      <div class="field-group">
+        <label>Professional Build &amp; Assembly</label>
+        <div class="tri-state" id="rq_buildService">
+          <div class="tri-btn active-yes" onclick="setTri(this,'yes')">Yes</div>
+          <div class="tri-btn" onclick="setTri(this,'no')">No, I'll build it</div>
+          <div class="tri-btn" onclick="setTri(this,'unsure')">Not Sure</div>
+        </div>
+      </div>
+      <div class="field-group">
+        <label>Delivery Needed?</label>
+        <div class="tri-state" id="rq_delivery">
+          <div class="tri-btn active-yes" onclick="setTri(this,'yes')">Yes</div>
+          <div class="tri-btn" onclick="setTri(this,'no')">No, I'll pick up</div>
+          <div class="tri-btn" onclick="setTri(this,'unsure')">Not Sure</div>
+        </div>
+      </div>
+      <div class="field-group full">
+        <label>Delivery / Installation Address</label>
+        <input type="text" id="rq_deliveryAddress" placeholder="Full address for delivery (if different from above)">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ADDITIONAL NOTES ═══ -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(99,102,241,0.12);color:#6366F1;"><i class="fas fa-message"></i></div>
+      <div><h2>Additional Notes</h2><div class="section-sub">Anything else we should know?</div></div>
+    </div>
+    <div class="field-group">
+      <textarea id="rq_notes" rows="5" placeholder="Tell us more about what you're envisioning, any specific requirements, inspiration builds, questions, etc."></textarea>
+    </div>
+  </div>
+
+  <!-- ═══ SUBMIT ═══ -->
+  <div class="submit-section">
+    <button type="button" class="submit-btn" id="submitBtn" onclick="event.preventDefault();submitQuoteRequest()">
+      <i class="fas fa-paper-plane"></i> Submit Quote Request
+    </button>
+    <div class="submit-note">We typically respond within 1–2 business days.</div>
+  </div>
+</div>
+
+<!-- Success state (hidden initially) -->
+<div class="form-container" id="successContainer" style="display:none;">
+  <div class="success-card">
+    <div class="icon"><i class="fas fa-check-circle"></i></div>
+    <h2>Quote Request Submitted!</h2>
+    <p>Thank you for your interest in a custom Velocity Pro Sims racing simulator. Our team will review your request and get back to you within 1–2 business days.</p>
+    <div class="ref" id="successRef"></div>
+  </div>
+</div>
+
+<div class="form-footer">
+  <p>Velocity Pro Sims &mdash; <a href="https://www.velocityprosims.com" target="_blank">velocityprosims.com</a></p>
+  <p style="margin-top:4px;"><a href="mailto:sales@velocityprosims.com">sales@velocityprosims.com</a></p>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  // EmailJS config (same account/service/template as the live turnkey form)
+  const firebaseConfig = {
+    apiKey: "AIzaSyDHKg7eVImJnhuV1r2SM3BhmH1zToDoXkg",
+    authDomain: "velocity-pro-sims-sop.firebaseapp.com",
+    projectId: "velocity-pro-sims-sop",
+    storageBucket: "velocity-pro-sims-sop.firebasestorage.app",
+    messagingSenderId: "473323330307",
+    appId: "1:473323330307:web:0017e858ea4b923ed96736"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  /* EmailJS */
   const EMAILJS_PUBLIC_KEY = 'ea3jgX2jgaRfO2JyK';
   const EMAILJS_SERVICE_ID = 'service_e8quu9b';
   const EMAILJS_NOTIFY_TEMPLATE = 'template_zsgll86';
-  emailjs.init(EMAILJS_PUBLIC_KEY);
+  const NOTIFY_EMAILS = 'sales@velocityprosims.com';
+  if (typeof emailjs !== 'undefined') emailjs.init(EMAILJS_PUBLIC_KEY);
 
-  const form = document.getElementById('quoteForm');
-  const statusEl = document.getElementById('qfStatus');
-  const submitBtn = document.getElementById('qfSubmit');
-
-  // tell the parent page how tall we are so the iframe can size itself
-  function postHeight(){
-    const h = document.body.scrollHeight;
-    if (window.parent) window.parent.postMessage({vpsQuoteHeight: h}, '*');
+  /* ── Tri-state toggle helper ── */
+  function setTri(btn, val) {
+    const parent = btn.closest('.tri-state');
+    parent.querySelectorAll('.tri-btn').forEach(b => b.className = 'tri-btn');
+    if (val === 'yes') btn.classList.add('active-yes');
+    else if (val === 'no') btn.classList.add('active-no');
+    else btn.classList.add('active-unsure');
+    parent.dataset.value = val;
   }
-  window.addEventListener('load', postHeight);
-  window.addEventListener('resize', postHeight);
-  new ResizeObserver(postHeight).observe(document.body);
 
-  function validate(){
-    let ok = true;
-    form.querySelectorAll('[required]').forEach(el=>{
-      const field = el.closest('.field');
-      let bad = !el.value.trim();
-      if (el.type==='email' && el.value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value)) bad = true;
-      field.classList.toggle('invalid', bad);
-      if (bad) ok = false;
-    });
-    return ok;
+  function getTriValue(id) {
+    const el = document.getElementById(id);
+    return el ? (el.dataset.value || 'unsure') : 'unsure';
   }
-  form.addEventListener('input', e=>{ const f=e.target.closest('.field'); if(f) f.classList.remove('invalid'); });
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    statusEl.textContent=''; statusEl.classList.remove('error');
-    if(!validate()){ statusEl.textContent='Please fill in the required fields above.'; statusEl.classList.add('error'); postHeight(); return; }
+  /* ── Reference generator ── */
+  function generateRef() {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let code = '';
+    const arr = new Uint8Array(6);
+    crypto.getRandomValues(arr);
+    for (let i = 0; i < 6; i++) code += chars[arr[i] % chars.length];
+    return 'SIM-' + code;
+  }
 
-    const d = Object.fromEntries(new FormData(form).entries());
-    const line = (k,v)=> v && String(v).trim() ? `${k}: ${v}\n` : '';
-    const message =
-      '— CONTACT —\n'+
-      line('Name', `${d.first_name||''} ${d.last_name||''}`)+line('Email', d.email)+line('Phone', d.phone)+line('Company', d.company)+line('Location', d.location)+
-      '\n— BUILD —\n'+
-      line('Intended Use', d.intended_use)+line('Budget', d.budget)+line('Timeline', d.timeline)+line('Number of Simulators', d.quantity)+
-      '\n— COCKPIT & SEATING —\n'+
-      line('Chassis', d.chassis)+line('Monitor Mount', d.monitor_mount)+line('Seat Preferences', d.seat)+
-      '\n— CONTROLS —\n'+
-      line('Wheel / Motor', d.wheel_motor)+line('Steering Wheel', d.steering_wheel)+line('Pedals', d.pedals)+line('Shifter', d.shifter)+line('Handbrake', d.handbrake)+line('Button Box', d.button_box)+
-      '\n— DISPLAY —\n'+
-      line('Screen Setup', d.screen_setup)+line('VR Headset', d.vr)+line('PC Preferences', d.pc)+
-      '\n— IMMERSION & MOTION —\n'+
-      line('Haptics', d.haptics)+line('Motion Platform', d.motion)+line('Audio', d.audio)+
-      '\n— SERVICES & DELIVERY —\n'+
-      line('Build & Assembly', d.build_assembly)+line('Delivery Needed', d.delivery)+line('Delivery Address', d.delivery_address)+
-      '\n— NOTES —\n'+ (d.notes||'(none)');
-
-    const params = Object.assign({}, d, {
-      full_name: `${d.first_name||''} ${d.last_name||''}`.trim(),
-      from_name: `${d.first_name||''} ${d.last_name||''}`.trim(),
-      reply_to: d.email,
-      to_email: 'sales@velocityprosims.com',
-      to_name: 'Velocity Pro Sims',
-      message: message
+  /* ── Validation ── */
+  function validateForm() {
+    let valid = true;
+    const required = [
+      { id: 'rq_firstName', type: 'input' },
+      { id: 'rq_lastName', type: 'input' },
+      { id: 'rq_email', type: 'email' },
+      { id: 'rq_phone', type: 'input' },
+      { id: 'rq_intendedUse', type: 'select' },
+    ];
+    required.forEach(f => {
+      const el = document.getElementById(f.id);
+      const group = el.closest('.field-group');
+      const val = el.value.trim();
+      let fieldValid = !!val;
+      if (f.type === 'email') fieldValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      if (!fieldValid) { group.classList.add('error'); valid = false; }
+      else { group.classList.remove('error'); }
     });
+    return valid;
+  }
 
-    submitBtn.disabled = true; submitBtn.textContent = 'Sending…';
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NOTIFY_TEMPLATE, params)
-      .then(()=>{
-        form.style.display='none';
-        document.getElementById('qfSuccess').style.display='block';
-        postHeight();
-        if(window.parent) window.parent.postMessage({vpsQuoteSubmitted:true}, '*');
-      })
-      .catch(err=>{
-        submitBtn.disabled=false; submitBtn.textContent='Submit Quote Request';
-        statusEl.textContent='Sorry, something went wrong sending your request. Please call us at (954) 296-6197.';
-        statusEl.classList.add('error');
-        postHeight();
-        console.error('EmailJS error:', err);
-      });
+  /* ── Submit ── */
+  async function submitQuoteRequest() {
+    if (!validateForm()) {
+      document.querySelector('.field-group.error')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+    const val = id => (document.getElementById(id)?.value || '').trim();
+    const refNumber = generateRef();
+
+    const payload = {
+      /* Contact */
+      firstName: val('rq_firstName'),
+      lastName: val('rq_lastName'),
+      clientName: val('rq_firstName') + ' ' + val('rq_lastName'),
+      clientEmail: val('rq_email'),
+      clientPhone: val('rq_phone'),
+      clientCompany: val('rq_company'),
+      clientAddress: val('rq_address'),
+
+      /* About the build */
+      intendedUse: val('rq_intendedUse'),
+      budget: val('rq_budget'),
+      timeline: val('rq_timeline'),
+      numSims: val('rq_numSims'),
+
+      /* Cockpit & Seating */
+      chassis: val('rq_chassis'),
+      monitorMount: val('rq_monitorMount'),
+      seatPrefs: val('rq_seatPrefs'),
+
+      /* Controls */
+      wheelMotor: val('rq_wheelMotor'),
+      steeringWheel: val('rq_steeringWheel'),
+      pedals: val('rq_pedals'),
+      shifter: val('rq_shifter'),
+      handbrake: val('rq_handbrake'),
+      buttonBox: val('rq_buttonBox'),
+
+      /* Display */
+      screenOption: val('rq_screenOption'),
+      vr: val('rq_vr'),
+      pcPrefs: val('rq_pcPrefs'),
+
+      /* Immersion */
+      haptics: getTriValue('rq_haptics'),
+      motion: getTriValue('rq_motion'),
+      audio: val('rq_audio'),
+
+      /* Services */
+      buildService: getTriValue('rq_buildService'),
+      delivery: getTriValue('rq_delivery'),
+      deliveryAddress: val('rq_deliveryAddress'),
+
+      /* Notes */
+      notes: val('rq_notes'),
+
+      /* Meta */
+      refNumber: refNumber,
+      status: 'new',
+      createdAt: new Date().toISOString(),
+      source: 'website',
+    };
+
+    try {
+      await db.collection('simPipelineQuotes').add(payload);
+
+      /* Send notification email */
+      if (typeof emailjs !== 'undefined') {
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NOTIFY_TEMPLATE, {
+          to_email: NOTIFY_EMAILS,
+          subject: 'New Simulator Quote Request — ' + payload.clientName,
+          message: 'A new simulator quote request has been submitted from the website.\n\nName: ' + payload.clientName + '\nEmail: ' + payload.clientEmail + '\nPhone: ' + payload.clientPhone + '\nBudget: ' + (payload.budget || 'Not specified') + '\nTimeline: ' + (payload.timeline || 'Not specified') + '\nIntended Use: ' + (payload.intendedUse || 'Not specified') + '\n\nRef: ' + refNumber + '\nTime: ' + new Date().toLocaleString() + '\n\nLog in to your SOP Portal to view the full details.',
+          from_name: 'VPS Quote Alerts',
+          reply_to: 'sales@velocityprosims.com',
+        }).catch(err => console.error('Email notification failed:', err));
+      }
+
+      /* Show success */
+      document.getElementById('formContainer').style.display = 'none';
+      document.getElementById('successContainer').style.display = 'block';
+      document.getElementById('successRef').textContent = 'Reference: ' + refNumber;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (err) {
+      console.error('Error submitting quote request:', err);
+      alert('Something went wrong. Please try again or email us directly at sales@velocityprosims.com');
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Quote Request';
+    }
+  }
+
+  /* ── Init tri-state defaults ── */
+  document.querySelectorAll('.tri-state').forEach(ts => {
+    const activeBtn = ts.querySelector('.tri-btn[class*="active-"]');
+    if (activeBtn) {
+      if (activeBtn.classList.contains('active-yes')) ts.dataset.value = 'yes';
+      else if (activeBtn.classList.contains('active-no')) ts.dataset.value = 'no';
+      else ts.dataset.value = 'unsure';
+    } else {
+      ts.dataset.value = 'unsure';
+    }
   });
+
+  /* Clear errors on input */
+  document.querySelectorAll('.field-group input, .field-group select, .field-group textarea').forEach(el => {
+    el.addEventListener('input', () => el.closest('.field-group').classList.remove('error'));
+    el.addEventListener('change', () => el.closest('.field-group').classList.remove('error'));
+  });
+</script>
+<script>
+/* Auto-report height so the embedding iframe (landing page) can size this form. */
+(function(){
+  function postH(){ try{ if(window.parent && window.parent!==window) window.parent.postMessage({vpsQuoteHeight: document.body.scrollHeight}, '*'); }catch(e){} }
+  window.addEventListener('load', postH);
+  window.addEventListener('resize', postH);
+  if(window.ResizeObserver){ try{ new ResizeObserver(postH).observe(document.body); }catch(e){} }
+  var n=0, t=setInterval(function(){ postH(); if(++n>60) clearInterval(t); }, 350);
+})();
 </script>
 </body>
 </html>
