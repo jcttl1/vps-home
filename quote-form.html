@@ -50,9 +50,9 @@
 
     /* Container */
     .form-container {
-      max-width: 780px;
+      max-width: 1600px;
       margin: 0 auto;
-      padding: 32px 20px 60px;
+      padding: 32px clamp(16px,3vw,48px) 60px;
     }
 
     /* Hero */
@@ -118,7 +118,7 @@
     /* Form grid */
     .form-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 14px;
     }
     .form-grid .full { grid-column: 1 / -1; }
@@ -158,7 +158,7 @@
     .field-group textarea { resize: vertical; min-height: 80px; }
     .field-group select { cursor: pointer !important; appearance: none !important; -webkit-appearance: none !important; -moz-appearance: none !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6.5 6.5 6.5-6.5'/%3E%3C/svg%3E") !important; background-repeat: no-repeat !important; background-position: right 12px center !important; padding-right: 32px !important; }
     .field-group select option { background: #1E1E24 !important; color: #EAEAEA !important; -webkit-text-fill-color: #EAEAEA !important; }
-    .field-hint { font-size: 0.76rem; color: var(--text-muted); margin-top: 2px; }
+    .field-hint { font-size: 0.8rem; line-height: 1.45; color: var(--text-muted); margin-top: 5px; max-width: 340px; }
 
     /* Checkbox row */
     .check-row {
@@ -293,36 +293,42 @@
   <div class="form-section">
     <div class="section-header">
       <div class="section-icon" style="background:rgba(92,191,42,0.12);color:#5CBF2A;"><i class="fas fa-user"></i></div>
-      <div><h2>Contact Information</h2><div class="section-sub">How can we reach you?</div></div>
+      <div><h2>Contact Information</h2><div class="section-sub">How we'll reach you with your custom quote — just the basics.</div></div>
     </div>
     <div class="form-grid">
       <div class="field-group">
         <label>First Name <span class="required">*</span></label>
         <input type="text" id="rq_firstName" placeholder="John" required>
+        <div class="field-hint">Your first name.</div>
         <span class="error-msg">Please enter your first name</span>
       </div>
       <div class="field-group">
         <label>Last Name <span class="required">*</span></label>
         <input type="text" id="rq_lastName" placeholder="Doe" required>
+        <div class="field-hint">Your last name.</div>
         <span class="error-msg">Please enter your last name</span>
       </div>
       <div class="field-group">
         <label>Email <span class="required">*</span></label>
         <input type="email" id="rq_email" placeholder="john@example.com" required>
+        <div class="field-hint">Where we'll send your quote.</div>
         <span class="error-msg">Please enter a valid email</span>
       </div>
       <div class="field-group">
         <label>Phone <span class="required">*</span></label>
         <input type="tel" id="rq_phone" placeholder="(555) 123-4567" required>
+        <div class="field-hint">Best number to reach you — a real person answers.</div>
         <span class="error-msg">Please enter your phone number</span>
       </div>
       <div class="field-group">
         <label>Company</label>
         <input type="text" id="rq_company" placeholder="Company name (optional)">
+        <div class="field-hint">Only if this is for a business. Otherwise leave blank.</div>
       </div>
       <div class="field-group">
         <label>Location / Address</label>
         <input type="text" id="rq_address" placeholder="City, State or full address">
+        <div class="field-hint">Your city and state (or full address) so we know where you are.</div>
       </div>
     </div>
   </div>
@@ -331,7 +337,7 @@
   <div class="form-section">
     <div class="section-header">
       <div class="section-icon" style="background:rgba(59,130,246,0.12);color:#3B82F6;"><i class="fas fa-bullseye"></i></div>
-      <div><h2>About Your Build</h2><div class="section-sub">Help us understand what you're looking for</div></div>
+      <div><h2>About Your Build</h2><div class="section-sub">The big picture: who it's for, your budget, and when you'd like it. No technical knowledge needed here.</div></div>
     </div>
     <div class="form-grid">
       <div class="field-group">
@@ -346,6 +352,7 @@
           <option value="training">Training / Driver Development</option>
           <option value="other">Other</option>
         </select>
+        <div class="field-hint">Who it's for and where it'll live — your home, a business, events, training, etc.</div>
         <span class="error-msg">Please select an intended use</span>
       </div>
       <div class="field-group">
@@ -360,6 +367,7 @@
           <option value="50k-plus">$50,000+</option>
           <option value="unsure">Not sure yet</option>
         </select>
+        <div class="field-hint">A rough ballpark is fine. We build to fit your budget — no pressure.</div>
       </div>
       <div class="field-group">
         <label>Timeline</label>
@@ -372,6 +380,7 @@
           <option value="flexible">Flexible / No rush</option>
           <option value="just-exploring">Just exploring options</option>
         </select>
+        <div class="field-hint">When you'd like to have it. “Just exploring” is totally fine.</div>
       </div>
       <div class="field-group">
         <label>Number of Simulators</label>
@@ -382,6 +391,7 @@
           <option value="4">4 Simulators</option>
           <option value="5+">5+ Simulators</option>
         </select>
+        <div class="field-hint">How many complete setups you need.</div>
       </div>
     </div>
   </div>
@@ -390,7 +400,7 @@
   <div class="form-section">
     <div class="section-header">
       <div class="section-icon" style="background:rgba(236,72,153,0.12);color:#EC4899;"><i class="fas fa-chair"></i></div>
-      <div><h2>Cockpit &amp; Seating</h2><div class="section-sub">Select "Not sure" if you'd like our recommendation</div></div>
+      <div><h2>Cockpit &amp; Seating</h2><div class="section-sub">The seat and frame you sit in. Not sure? Choose "Not Sure" and we'll recommend the right fit.</div></div>
     </div>
     <div class="form-grid">
       <div class="field-group">
@@ -401,6 +411,7 @@
           <option value="Formula">Formula</option>
           <option value="not-sure">Not Sure Yet</option>
         </select>
+        <div class="field-hint">The frame you sit in. GT sits you upright like a sports car; Formula reclines you like an F1 car.</div>
       </div>
       <div class="field-group">
         <label>Monitor Mount</label>
@@ -412,10 +423,12 @@
           <option value="Integrated Free-Standing">Integrated Free-Standing</option>
           <option value="other">Other (specify in notes)</option>
         </select>
+        <div class="field-hint">How the screens are held up — on the rig itself, or on a separate free-standing stand.</div>
       </div>
       <div class="field-group full">
         <label>Seat Preferences</label>
         <input type="text" id="rq_seatPrefs" placeholder="Any seat brand/style preference? (e.g. bucket seat, GT seat, specific brand)">
+        <div class="field-hint">Any seat style, size, or brand you have in mind. Optional.</div>
       </div>
     </div>
   </div>
@@ -424,20 +437,23 @@
   <div class="form-section">
     <div class="section-header">
       <div class="section-icon" style="background:rgba(139,92,246,0.12);color:#8B5CF6;"><i class="fas fa-gamepad"></i></div>
-      <div><h2>Controls &amp; Input</h2><div class="section-sub">Steering, pedals, and accessories</div></div>
+      <div><h2>Controls &amp; Input</h2><div class="section-sub">The wheel, pedals, and extras you actually touch. New to this? Every item has a plain-English note under it.</div></div>
     </div>
     <div class="form-grid">
       <div class="field-group">
         <label>Wheel / Motor</label>
         <input type="text" id="rq_wheelMotor" placeholder="Any preference? (e.g. Fanatec, Simucube, Moza)">
+        <div class="field-hint">The motor the wheel attaches to. “Direct drive” gives the strongest, most realistic feel. Unfamiliar? We'll guide you.</div>
       </div>
       <div class="field-group">
         <label>Steering Wheel</label>
         <input type="text" id="rq_steeringWheel" placeholder="Wheel preference? (e.g. round, GT, formula)">
+        <div class="field-hint">The wheel you actually hold — round for GT cars, flat-bottomed for Formula.</div>
       </div>
       <div class="field-group">
         <label>Pedals</label>
         <input type="text" id="rq_pedals" placeholder="Pedal preference? (e.g. Heusinkveld, Fanatec)">
+        <div class="field-hint">The gas, brake, and clutch. “Load cell” pedals feel like pressing a real car's brake.</div>
       </div>
       <div class="field-group">
         <label>Shifter</label>
@@ -446,6 +462,7 @@
           <option value="yes">Yes, I want a shifter</option>
           <option value="no">No shifter needed</option>
         </select>
+        <div class="field-hint">A separate gear lever, like a manual stick shift. Optional.</div>
       </div>
       <div class="field-group">
         <label>Handbrake</label>
@@ -454,6 +471,7 @@
           <option value="yes">Yes, I want a handbrake</option>
           <option value="no">No handbrake needed</option>
         </select>
+        <div class="field-hint">A pull lever for sliding the car — great for rally and drifting. Optional.</div>
       </div>
       <div class="field-group">
         <label>Button Box</label>
@@ -462,6 +480,7 @@
           <option value="yes">Yes, I want a button box</option>
           <option value="no">No button box needed</option>
         </select>
+        <div class="field-hint">Extra buttons and switches for in-car controls. Optional.</div>
       </div>
     </div>
   </div>
@@ -470,7 +489,7 @@
   <div class="form-section">
     <div class="section-header">
       <div class="section-icon" style="background:rgba(6,182,212,0.12);color:#06B6D4;"><i class="fas fa-desktop"></i></div>
-      <div><h2>Display &amp; Technology</h2><div class="section-sub">Screens, PC, and visual setup</div></div>
+      <div><h2>Display &amp; Technology</h2><div class="section-sub">What you look at while driving, and the computer that powers it all.</div></div>
     </div>
     <div class="form-grid">
       <div class="field-group">
@@ -483,6 +502,7 @@
           <option value="VR Only">VR Only</option>
           <option value="other">Other (specify in notes)</option>
         </select>
+        <div class="field-hint">How you'll see the track — one screen, a big ultrawide, three screens, or VR.</div>
       </div>
       <div class="field-group">
         <label>VR Headset</label>
@@ -492,10 +512,12 @@
           <option value="addon">Yes, in addition to screens</option>
           <option value="no">No VR needed</option>
         </select>
+        <div class="field-hint">A headset for a fully immersive, look-around view — instead of, or alongside, screens.</div>
       </div>
       <div class="field-group full">
         <label>PC Preferences</label>
         <input type="text" id="rq_pcPrefs" placeholder="Any PC spec preferences? (e.g. high-end, mid-range, specific GPU)">
+        <div class="field-hint">The computer that runs everything. Want high-end, mid-range, or a specific part? Or leave it to us.</div>
       </div>
     </div>
   </div>
@@ -504,7 +526,7 @@
   <div class="form-section">
     <div class="section-header">
       <div class="section-icon" style="background:rgba(245,158,11,0.12);color:#F59E0B;"><i class="fas fa-wave-square"></i></div>
-      <div><h2>Immersion &amp; Motion</h2><div class="section-sub">Haptics, motion platforms, and audio</div></div>
+      <div><h2>Immersion &amp; Motion</h2><div class="section-sub">Optional extras that make it feel real — feeling the road, physical motion, and sound.</div></div>
     </div>
     <div class="form-grid">
       <div class="field-group">
@@ -514,6 +536,7 @@
           <div class="tri-btn" onclick="setTri(this,'no')">No</div>
           <div class="tri-btn active-unsure" onclick="setTri(this,'unsure')">Not Sure</div>
         </div>
+        <div class="field-hint">Bass-shakers that let you feel the road, engine, and bumps through the seat.</div>
       </div>
       <div class="field-group">
         <label>Motion Platform</label>
@@ -522,6 +545,7 @@
           <div class="tri-btn" onclick="setTri(this,'no')">No</div>
           <div class="tri-btn active-unsure" onclick="setTri(this,'unsure')">Not Sure</div>
         </div>
+        <div class="field-hint">A platform that physically tilts and moves the whole rig as you drive — the most immersive option.</div>
       </div>
       <div class="field-group">
         <label>Audio</label>
@@ -532,6 +556,7 @@
           <option value="Premium Surround">Premium Surround Sound</option>
           <option value="other">Other (specify in notes)</option>
         </select>
+        <div class="field-hint">How you'll hear it — headphones, regular speakers, or full surround sound.</div>
       </div>
     </div>
   </div>
@@ -540,7 +565,7 @@
   <div class="form-section">
     <div class="section-header">
       <div class="section-icon" style="background:rgba(16,185,129,0.12);color:#10B981;"><i class="fas fa-truck"></i></div>
-      <div><h2>Services &amp; Delivery</h2><div class="section-sub">Build, delivery, and installation options</div></div>
+      <div><h2>Services &amp; Delivery</h2><div class="section-sub">Whether we build it, deliver it, and set it up for you.</div></div>
     </div>
     <div class="form-grid">
       <div class="field-group">
@@ -550,6 +575,7 @@
           <div class="tri-btn" onclick="setTri(this,'no')">No, I'll build it</div>
           <div class="tri-btn" onclick="setTri(this,'unsure')">Not Sure</div>
         </div>
+        <div class="field-hint">Want us to build and assemble it for you, or would you rather put it together yourself?</div>
       </div>
       <div class="field-group">
         <label>Delivery Needed?</label>
@@ -558,10 +584,12 @@
           <div class="tri-btn" onclick="setTri(this,'no')">No, I'll pick up</div>
           <div class="tri-btn" onclick="setTri(this,'unsure')">Not Sure</div>
         </div>
+        <div class="field-hint">Want us to deliver (and set it up), or will you pick it up?</div>
       </div>
       <div class="field-group full">
         <label>Delivery / Installation Address</label>
         <input type="text" id="rq_deliveryAddress" placeholder="Full address for delivery (if different from above)">
+        <div class="field-hint">Where we'd ship or set it up, if different from your address above.</div>
       </div>
     </div>
   </div>
@@ -570,10 +598,11 @@
   <div class="form-section">
     <div class="section-header">
       <div class="section-icon" style="background:rgba(99,102,241,0.12);color:#6366F1;"><i class="fas fa-message"></i></div>
-      <div><h2>Additional Notes</h2><div class="section-sub">Anything else we should know?</div></div>
+      <div><h2>Additional Notes</h2><div class="section-sub">Anything else on your mind. Totally optional.</div></div>
     </div>
     <div class="field-group">
       <textarea id="rq_notes" rows="5" placeholder="Tell us more about what you're envisioning, any specific requirements, inspiration builds, questions, etc."></textarea>
+        <div class="field-hint">Inspiration builds, special requirements, questions — the more we know, the better we tailor your quote.</div>
     </div>
   </div>
 
@@ -787,13 +816,12 @@
   });
 </script>
 <script>
-/* Auto-report height so the embedding iframe (landing page) can size this form. */
 (function(){
   function postH(){ try{ if(window.parent && window.parent!==window) window.parent.postMessage({vpsQuoteHeight: document.body.scrollHeight}, '*'); }catch(e){} }
   window.addEventListener('load', postH);
   window.addEventListener('resize', postH);
   if(window.ResizeObserver){ try{ new ResizeObserver(postH).observe(document.body); }catch(e){} }
-  var n=0, t=setInterval(function(){ postH(); if(++n>60) clearInterval(t); }, 350);
+  var n=0,t=setInterval(function(){ postH(); if(++n>60) clearInterval(t); },350);
 })();
 </script>
 </body>
