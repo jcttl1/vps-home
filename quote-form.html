@@ -50,9 +50,9 @@
 
     /* Container */
     .form-container {
-      max-width: none;
+      max-width: 820px;
       margin: 0 auto;
-      padding: 28px clamp(16px,3vw,56px) 64px;
+      padding: 28px clamp(16px,4vw,28px) 60px;
     }
 
     /* Hero */
@@ -118,7 +118,7 @@
     /* Form grid */
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
     .form-grid .full { grid-column: 1 / -1; }
@@ -158,7 +158,7 @@
     .field-group textarea { resize: vertical; min-height: 80px; }
     .field-group select { cursor: pointer !important; appearance: none !important; -webkit-appearance: none !important; -moz-appearance: none !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6.5 6.5 6.5-6.5'/%3E%3C/svg%3E") !important; background-repeat: no-repeat !important; background-position: right 12px center !important; padding-right: 32px !important; }
     .field-group select option { background: #1A1D17 !important; color: #EAEAEA !important; -webkit-text-fill-color: #EAEAEA !important; }
-    .field-hint { font-size: 0.8rem; line-height: 1.45; color: var(--text-muted); margin-top: 5px; max-width: 340px; }
+    .field-hint { font-size: 0.8rem; line-height: 1.45; color: var(--text-muted); margin-top: 5px; }
 
     /* Checkbox row */
     .check-row {
@@ -274,7 +274,6 @@
     .field-group .error-msg { color: #ef4444; font-size: 0.76rem; display: none; }
     .field-group.error .error-msg { display: block; }
 
-    /* —— aligned with landing page aesthetic —— */
     .form-header-text { color: #8FD94E; }
     .form-hero h1 { text-transform: uppercase; letter-spacing: 0.5px; font-weight: 800; }
     .section-header h2 { text-transform: uppercase; letter-spacing: 1px; font-weight: 800; font-size: 1.3rem; }
@@ -822,17 +821,7 @@
   });
 </script>
 <script>
-(function(){
-  var last=0;
-  function postH(){
-    var h=Math.ceil(document.body.getBoundingClientRect().height);
-    if(h && Math.abs(h-last)>1){ last=h; try{ if(window.parent && window.parent!==window) window.parent.postMessage({vpsQuoteHeight:h},'*'); }catch(e){} }
-  }
-  window.addEventListener('load',postH);
-  window.addEventListener('resize',function(){ setTimeout(postH,60); });
-  if(window.ResizeObserver){ try{ new ResizeObserver(function(){ setTimeout(postH,0); }).observe(document.body); }catch(e){} }
-  var n=0,t=setInterval(function(){ postH(); if(++n>60) clearInterval(t); },350);
-})();
+(function(){var last=0;function postH(){var h=Math.ceil(document.body.getBoundingClientRect().height);if(h&&Math.abs(h-last)>1){last=h;try{if(window.parent&&window.parent!==window)window.parent.postMessage({vpsQuoteHeight:h},'*');}catch(e){}}}window.addEventListener('load',postH);window.addEventListener('resize',function(){setTimeout(postH,60);});if(window.ResizeObserver){try{new ResizeObserver(function(){setTimeout(postH,0);}).observe(document.body);}catch(e){}}var n=0,t=setInterval(function(){postH();if(++n>60)clearInterval(t);},350);})();
 </script>
 </body>
 </html>
