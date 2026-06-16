@@ -508,9 +508,7 @@
 
 <!-- REQUEST A QUOTE -->
 <section id="quote">
-  <div class="wrap reveal">
-    <iframe id="quoteFrame" src="https://jcttl1.github.io/vps-home/quote-form.html" title="Request a simulator quote" loading="lazy" scrolling="no" style="width:100%;border:0;display:block;min-height:640px;overflow:hidden"></iframe>
-  </div>
+  <iframe id="quoteFrame" class="reveal" src="https://jcttl1.github.io/vps-home/quote-form.html" title="Request a simulator quote" loading="lazy" scrolling="no" style="width:100%;border:0;display:block;min-height:640px;overflow:hidden"></iframe>
 </section>
 
 <!-- FINAL CTA -->
@@ -689,35 +687,11 @@ window.VPS_PORTFOLIO = {
 </script>
 
 <script>
-(function(){
-  document.addEventListener('click', function(e){
-    var a = e.target.closest && e.target.closest('a[href^="#"]');
-    if(!a) return;
-    var id = a.getAttribute('href').slice(1);
-    if(!id) return;
-    var el = document.getElementById(id);
-    if(!el) return;
-    if(window.parent && window.parent !== window){
-      e.preventDefault();
-      var y = el.getBoundingClientRect().top + (window.pageYOffset||0);
-      try{ parent.postMessage({vpsScrollTo: y}, '*'); }catch(err){}
-    }
-  });
-})();
+(function(){document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;var id=a.getAttribute('href').slice(1);if(!id)return;var el=document.getElementById(id);if(!el)return;if(window.parent&&window.parent!==window){e.preventDefault();var y=el.getBoundingClientRect().top+(window.pageYOffset||0);try{parent.postMessage({vpsScrollTo:y},'*');}catch(err){}}});})();
 </script>
 <script>
-(function(){
-  var last = 0;
-  function measure(){
-    var h = Math.ceil(document.body.getBoundingClientRect().height);
-    if (h && Math.abs(h - last) > 1){ last = h; try{ parent.postMessage({vpsHomeHeight: h}, '*'); }catch(e){} }
-  }
-  window.addEventListener('load', measure);
-  window.addEventListener('resize', function(){ setTimeout(measure, 80); });
-  window.addEventListener('message', function(e){ if(e && e.data && e.data.vpsQuoteHeight){ setTimeout(measure, 90); } });
-  var n=0, t=setInterval(function(){ measure(); if(++n>40) clearInterval(t); }, 350);
-})();
+(function(){var last=0;function measure(){var h=Math.ceil(document.body.getBoundingClientRect().height);if(h&&Math.abs(h-last)>1){last=h;try{parent.postMessage({vpsHomeHeight:h},'*');}catch(e){}}}window.addEventListener('load',measure);window.addEventListener('resize',function(){setTimeout(measure,80);});window.addEventListener('message',function(e){if(e&&e.data&&e.data.vpsQuoteHeight){setTimeout(measure,90);}});var n=0,t=setInterval(function(){measure();if(++n>40)clearInterval(t);},350);})();
 </script>
 </body>
 </html>
-                                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                                                              
