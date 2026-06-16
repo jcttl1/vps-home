@@ -694,6 +694,24 @@ window.VPS_PORTFOLIO = {
 </script>
 
 <script>
+/* In-page anchor links (#quote etc): when embedded in a parent frame, ask the parent to scroll. */
+(function(){
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if(!id) return;
+    var el = document.getElementById(id);
+    if(!el) return;
+    if(window.parent && window.parent !== window){
+      e.preventDefault();
+      var y = el.getBoundingClientRect().top + (window.pageYOffset||0);
+      try{ parent.postMessage({vpsScrollTo: y}, '*'); }catch(err){}
+    }
+  });
+})();
+</script>
+<script>
 (function(){
   var last = 0;
   function measure(){
