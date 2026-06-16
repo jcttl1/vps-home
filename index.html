@@ -628,10 +628,14 @@ window.VPS_PORTFOLIO = {
   // Auto-size the embedded quote form to its content
   window.addEventListener('message', function(e){
     if (e.data && e.data.vpsQuoteHeight){
+      if (window.__vpsLockQuote) return;
       var f = document.getElementById('quoteFrame');
       var h = e.data.vpsQuoteHeight + 'px';
       if (f && f.style.height !== h) f.style.height = h;
     } else if (e.data && e.data.vpsQuoteSubmitted){
+      window.__vpsLockQuote = true;
+      var qfl = document.getElementById('quoteFrame');
+      if (qfl) qfl.style.height = '720px';
       var vpsDoScroll = function(){
         var qf = document.getElementById('quoteFrame');
         if (!qf) return;
@@ -642,8 +646,8 @@ window.VPS_PORTFOLIO = {
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
       };
-      setTimeout(vpsDoScroll, 600);
-      setTimeout(vpsDoScroll, 1150);
+      setTimeout(vpsDoScroll, 400);
+      setTimeout(vpsDoScroll, 900);
     }
   });
 
