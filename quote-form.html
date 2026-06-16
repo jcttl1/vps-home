@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Request a Quote — Velocity Pro Sims</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&family=Saira:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green: #5CBF2A;
-      --green-light: #7DD94D;
-      --green-dim: rgba(92,191,42,0.12);
-      --bg-primary: #0A0A0C;
-      --bg-secondary: #111114;
-      --bg-card: #16161A;
-      --bg-input: #1E1E24;
+      --green: #7DC242;
+      --green-light: #8FD94E;
+      --green-dim: rgba(125,194,66,0.12);
+      --bg-primary: #0B0D0B;
+      --bg-secondary: #0E110E;
+      --bg-card: #131613;
+      --bg-input: #1A1D17;
       --border: rgba(255,255,255,0.08);
       --border-light: rgba(255,255,255,0.14);
       --text-primary: #EAEAEA;
@@ -28,11 +28,11 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
+      font-family: 'Saira', -apple-system, sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
       line-height: 1.6;
-      min-height: 100vh;
+      
     }
 
     /* Header */
@@ -52,7 +52,7 @@
     .form-container {
       max-width: none;
       margin: 0 auto;
-      padding: 32px clamp(16px,3vw,48px) 60px;
+      padding: 28px clamp(16px,3vw,56px) 64px;
     }
 
     /* Hero */
@@ -112,7 +112,7 @@
       font-size: 0.82rem;
       color: var(--text-muted);
       font-weight: 400;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Saira', sans-serif;
     }
 
     /* Form grid */
@@ -133,17 +133,17 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    .field-group label .required { color: #5CBF2A !important; margin-left: 2px; }
+    .field-group label .required { color: #7DC242 !important; margin-left: 2px; }
     .field-group input,
     .field-group select,
     .field-group textarea {
       padding: 10px 14px !important;
-      background: #1E1E24 !important;
+      background: #1A1D17 !important;
       border: 1px solid rgba(255,255,255,0.08) !important;
       border-radius: 8px !important;
       color: #EAEAEA !important;
       font-size: 0.92rem !important;
-      font-family: 'Inter', sans-serif !important;
+      font-family: 'Saira', sans-serif !important;
       transition: border-color 0.2s ease !important;
       outline: none !important;
       width: 100% !important;
@@ -153,11 +153,11 @@
     .field-group input:focus,
     .field-group select:focus,
     .field-group textarea:focus {
-      border-color: #5CBF2A !important;
+      border-color: #7DC242 !important;
     }
     .field-group textarea { resize: vertical; min-height: 80px; }
     .field-group select { cursor: pointer !important; appearance: none !important; -webkit-appearance: none !important; -moz-appearance: none !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6.5 6.5 6.5-6.5'/%3E%3C/svg%3E") !important; background-repeat: no-repeat !important; background-position: right 12px center !important; padding-right: 32px !important; }
-    .field-group select option { background: #1E1E24 !important; color: #EAEAEA !important; -webkit-text-fill-color: #EAEAEA !important; }
+    .field-group select option { background: #1A1D17 !important; color: #EAEAEA !important; -webkit-text-fill-color: #EAEAEA !important; }
     .field-hint { font-size: 0.8rem; line-height: 1.45; color: var(--text-muted); margin-top: 5px; max-width: 340px; }
 
     /* Checkbox row */
@@ -210,13 +210,13 @@
       color: var(--text-muted);
       font-size: 0.82rem;
       font-weight: 600;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Saira', sans-serif;
       cursor: pointer;
       text-align: center;
       transition: all var(--transition);
     }
     .tri-btn:hover { border-color: var(--border-light); color: var(--text-secondary); }
-    .tri-btn.active-yes { background: rgba(92,191,42,0.15); border-color: var(--green); color: var(--green); }
+    .tri-btn.active-yes { background: rgba(125,194,66,0.15); border-color: var(--green); color: var(--green); }
     .tri-btn.active-no { background: rgba(239,68,68,0.12); border-color: #ef4444; color: #ef4444; }
     .tri-btn.active-unsure { background: rgba(245,158,11,0.12); border-color: #f59e0b; color: #f59e0b; }
 
@@ -239,14 +239,14 @@
       transition: all var(--transition);
       text-transform: uppercase;
     }
-    .submit-btn:hover { background: var(--green-light); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(92,191,42,0.3); }
+    .submit-btn:hover { background: var(--green-light); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(125,194,66,0.3); }
     .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
     .submit-note { font-size: 0.82rem; color: var(--text-muted); margin-top: 10px; }
 
     /* Success state */
     .success-card {
       background: var(--bg-card);
-      border: 1px solid rgba(92,191,42,0.3);
+      border: 1px solid rgba(125,194,66,0.3);
       border-radius: var(--radius);
       padding: 48px 32px;
       text-align: center;
@@ -273,6 +273,12 @@
     .field-group.error textarea { border-color: #ef4444; }
     .field-group .error-msg { color: #ef4444; font-size: 0.76rem; display: none; }
     .field-group.error .error-msg { display: block; }
+
+    /* —— aligned with landing page aesthetic —— */
+    .form-header-text { color: #8FD94E; }
+    .form-hero h1 { text-transform: uppercase; letter-spacing: 0.5px; font-weight: 800; }
+    .section-header h2 { text-transform: uppercase; letter-spacing: 1px; font-weight: 800; font-size: 1.3rem; }
+    .section-header { border-bottom-color: rgba(125,194,66,0.18); }
   </style>
 </head>
 <body>
@@ -292,7 +298,7 @@
   <!-- ═══ CONTACT INFO ═══ -->
   <div class="form-section">
     <div class="section-header">
-      <div class="section-icon" style="background:rgba(92,191,42,0.12);color:#5CBF2A;"><i class="fas fa-user"></i></div>
+      <div class="section-icon" style="background:rgba(125,194,66,0.14);color:#8FD94E;"><i class="fas fa-user"></i></div>
       <div><h2>Contact Information</h2><div class="section-sub">How we'll reach you with your custom quote — just the basics.</div></div>
     </div>
     <div class="form-grid">
@@ -336,7 +342,7 @@
   <!-- ═══ ABOUT YOUR BUILD ═══ -->
   <div class="form-section">
     <div class="section-header">
-      <div class="section-icon" style="background:rgba(59,130,246,0.12);color:#3B82F6;"><i class="fas fa-bullseye"></i></div>
+      <div class="section-icon" style="background:rgba(125,194,66,0.14);color:#8FD94E;"><i class="fas fa-bullseye"></i></div>
       <div><h2>About Your Build</h2><div class="section-sub">The big picture: who it's for, your budget, and when you'd like it. No technical knowledge needed here.</div></div>
     </div>
     <div class="form-grid">
@@ -399,7 +405,7 @@
   <!-- ═══ COCKPIT & SEATING ═══ -->
   <div class="form-section">
     <div class="section-header">
-      <div class="section-icon" style="background:rgba(236,72,153,0.12);color:#EC4899;"><i class="fas fa-chair"></i></div>
+      <div class="section-icon" style="background:rgba(125,194,66,0.14);color:#8FD94E;"><i class="fas fa-chair"></i></div>
       <div><h2>Cockpit &amp; Seating</h2><div class="section-sub">The seat and frame you sit in. Not sure? Choose "Not Sure" and we'll recommend the right fit.</div></div>
     </div>
     <div class="form-grid">
@@ -436,7 +442,7 @@
   <!-- ═══ CONTROLS & INPUT ═══ -->
   <div class="form-section">
     <div class="section-header">
-      <div class="section-icon" style="background:rgba(139,92,246,0.12);color:#8B5CF6;"><i class="fas fa-gamepad"></i></div>
+      <div class="section-icon" style="background:rgba(125,194,66,0.14);color:#8FD94E;"><i class="fas fa-gamepad"></i></div>
       <div><h2>Controls &amp; Input</h2><div class="section-sub">The wheel, pedals, and extras you actually touch. New to this? Every item has a plain-English note under it.</div></div>
     </div>
     <div class="form-grid">
@@ -488,7 +494,7 @@
   <!-- ═══ DISPLAY & TECHNOLOGY ═══ -->
   <div class="form-section">
     <div class="section-header">
-      <div class="section-icon" style="background:rgba(6,182,212,0.12);color:#06B6D4;"><i class="fas fa-desktop"></i></div>
+      <div class="section-icon" style="background:rgba(125,194,66,0.14);color:#8FD94E;"><i class="fas fa-desktop"></i></div>
       <div><h2>Display &amp; Technology</h2><div class="section-sub">What you look at while driving, and the computer that powers it all.</div></div>
     </div>
     <div class="form-grid">
@@ -525,7 +531,7 @@
   <!-- ═══ IMMERSION & MOTION ═══ -->
   <div class="form-section">
     <div class="section-header">
-      <div class="section-icon" style="background:rgba(245,158,11,0.12);color:#F59E0B;"><i class="fas fa-wave-square"></i></div>
+      <div class="section-icon" style="background:rgba(125,194,66,0.14);color:#8FD94E;"><i class="fas fa-wave-square"></i></div>
       <div><h2>Immersion &amp; Motion</h2><div class="section-sub">Optional extras that make it feel real — feeling the road, physical motion, and sound.</div></div>
     </div>
     <div class="form-grid">
@@ -564,7 +570,7 @@
   <!-- ═══ SERVICES & DELIVERY ═══ -->
   <div class="form-section">
     <div class="section-header">
-      <div class="section-icon" style="background:rgba(16,185,129,0.12);color:#10B981;"><i class="fas fa-truck"></i></div>
+      <div class="section-icon" style="background:rgba(125,194,66,0.14);color:#8FD94E;"><i class="fas fa-truck"></i></div>
       <div><h2>Services &amp; Delivery</h2><div class="section-sub">Whether we build it, deliver it, and set it up for you.</div></div>
     </div>
     <div class="form-grid">
@@ -597,7 +603,7 @@
   <!-- ═══ ADDITIONAL NOTES ═══ -->
   <div class="form-section">
     <div class="section-header">
-      <div class="section-icon" style="background:rgba(99,102,241,0.12);color:#6366F1;"><i class="fas fa-message"></i></div>
+      <div class="section-icon" style="background:rgba(125,194,66,0.14);color:#8FD94E;"><i class="fas fa-message"></i></div>
       <div><h2>Additional Notes</h2><div class="section-sub">Anything else on your mind. Totally optional.</div></div>
     </div>
     <div class="field-group">
@@ -817,10 +823,14 @@
 </script>
 <script>
 (function(){
-  function postH(){ try{ if(window.parent && window.parent!==window) window.parent.postMessage({vpsQuoteHeight: document.body.scrollHeight}, '*'); }catch(e){} }
-  window.addEventListener('load', postH);
-  window.addEventListener('resize', postH);
-  if(window.ResizeObserver){ try{ new ResizeObserver(postH).observe(document.body); }catch(e){} }
+  var last=0;
+  function postH(){
+    var h=Math.ceil(document.body.getBoundingClientRect().height);
+    if(h && Math.abs(h-last)>1){ last=h; try{ if(window.parent && window.parent!==window) window.parent.postMessage({vpsQuoteHeight:h},'*'); }catch(e){} }
+  }
+  window.addEventListener('load',postH);
+  window.addEventListener('resize',function(){ setTimeout(postH,60); });
+  if(window.ResizeObserver){ try{ new ResizeObserver(function(){ setTimeout(postH,0); }).observe(document.body); }catch(e){} }
   var n=0,t=setInterval(function(){ postH(); if(++n>60) clearInterval(t); },350);
 })();
 </script>
