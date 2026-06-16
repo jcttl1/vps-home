@@ -788,12 +788,20 @@
         }).catch(err => console.error('Email notification failed:', err));
       }
 
-      /* Show success */
-      document.getElementById('formContainer').style.display = 'none';
-      document.getElementById('successContainer').style.display = 'block';
-      document.getElementById('successRef').textContent = 'Reference: ' + refNumber;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      try{ if(window.parent && window.parent!==window) window.parent.postMessage({vpsQuoteSubmitted:true},'*'); }catch(e){}
+      /* Show confirmation in place — dim the form, replace the button area, keep it in view */
+      document.querySelectorAll('.form-section').forEach(function(el){ el.style.opacity='0.4'; el.style.pointerEvents='none'; });
+      var ss = document.querySelector('.submit-section');
+      if (ss) {
+        ss.innerHTML = '';
+        var card = document.createElement('div');
+        card.style.cssText = 'background:rgba(125,194,66,0.10);border:1px solid rgba(125,194,66,0.45);border-radius:16px;padding:32px 24px;text-align:center;';
+        var ic = document.createElement('div'); ic.style.cssText='font-size:2.6rem;color:#8FD94E;margin-bottom:10px;line-height:1;'; ic.innerHTML='<i class="fas fa-check-circle"></i>';
+        var hd = document.createElement('div'); hd.textContent='Quote Request Submitted!'; hd.style.cssText="font-family:'Rajdhani',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:1px;font-size:1.7rem;color:#fff;";
+        var pp = document.createElement('p'); pp.textContent='Thank you for your interest in a custom Velocity Pro Sims racing simulator. Our team will review your request and get back to you within 1-2 business days.'; pp.style.cssText='color:#A1A1AA;max-width:480px;margin:12px auto 0;line-height:1.55;';
+        var rf = document.createElement('div'); rf.textContent='Reference: ' + refNumber; rf.style.cssText='margin-top:14px;color:#8FD94E;font-weight:700;letter-spacing:0.5px;';
+        card.appendChild(ic); card.appendChild(hd); card.appendChild(pp); card.appendChild(rf); ss.appendChild(card);
+        try { ss.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch(e){}
+      }
 
     } catch (err) {
       console.error('Error submitting quote request:', err);
