@@ -693,5 +693,14 @@ window.VPS_PORTFOLIO = {
   })();
 </script>
 
+<script>
+(function(){
+  function postH(){ try{ parent.postMessage({vpsHomeHeight: document.documentElement.scrollHeight}, '*'); }catch(e){} }
+  window.addEventListener('load', postH);
+  window.addEventListener('resize', postH);
+  window.addEventListener('message', function(e){ if(e&&e.data&&e.data.vpsQuoteHeight){ setTimeout(postH,60); } });
+  var n=0, t=setInterval(function(){ postH(); if(++n>30) clearInterval(t); }, 400);
+})();
+</script>
 </body>
 </html>
