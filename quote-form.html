@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request a Quote — Velocity Pro Sims</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Saira:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+  :root{
+    --green:#4C8C1E;--green-d:#3c7016;--ink:#15180F;--muted:#566050;
+    --line:#E0E3D8;--card:#ffffff;--display:'Rajdhani',sans-serif;--body:'Saira',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:transparent;color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .qf{max-width:1500px;margin:0 auto}
+  .qf-block{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 26px 28px;margin-bottom:20px;box-shadow:0 10px 26px rgba(20,30,10,.05)}
+  .qf-block h3{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.03em;font-size:1.4rem;color:var(--ink)}
+  .qf-block .hint{color:var(--muted);font-size:.95rem;margin:.15rem 0 1.1rem}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid .full{grid-column:1 / -1}
+  @media(max-width:600px){.grid{grid-template-columns:1fr}}
+  label{display:block;font-weight:600;font-size:.9rem;margin-bottom:.35rem;color:var(--ink)}
+  label .req{color:var(--green-d)}
+  input,select,textarea{width:100%;font-family:var(--body);font-size:1rem;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:9px;padding:.7rem .8rem;transition:border-color .15s ease}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green)}
+  textarea{min-height:110px;resize:vertical}
+  select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23566050' stroke-width='2.5'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right .8rem center;padding-right:2.2rem}
+  .err{color:#b3261e;font-size:.82rem;margin-top:.3rem;display:none}
+  .field.invalid input,.field.invalid select{border-color:#b3261e}
+  .field.invalid .err{display:block}
+  .submit-row{text-align:center;padding:6px 0 4px}
+  .qf-btn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:1.3rem;color:#fff;background:var(--green);border:none;border-radius:10px;padding:1rem 2.4rem;cursor:pointer;box-shadow:0 8px 24px rgba(76,140,30,.3);transition:background .15s ease,transform .15s ease}
+  .qf-btn:hover{background:var(--green-d);transform:translateY(-2px)}
+  .qf-btn:disabled{opacity:.6;cursor:default;transform:none}
+  .field .help{display:block;font-size:.82rem;line-height:1.4;color:var(--muted);font-weight:400;margin:0 0 7px}
+  .submit-note{color:var(--muted);font-size:.9rem;margin-top:.7rem}
+  .qf-status{text-align:center;font-weight:600;margin-top:14px;min-height:1.2em}
+  .qf-status.error{color:#b3261e}
+  /* success */
+  .qf-success{display:none;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:48px 30px;box-shadow:0 10px 26px rgba(20,30,10,.05)}
+  .qf-success .check{width:74px;height:74px;border-radius:50%;background:rgba(76,140,30,.14);color:var(--green);display:grid;place-items:center;margin:0 auto 18px}
+  .qf-success .check svg{width:40px;height:40px}
+  .qf-success h3{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:2rem;color:var(--ink);margin-bottom:.5rem}
+  .qf-success p{color:var(--muted);max-width:46ch;margin:0 auto}
+</style>
+</head>
+<body>
+
+<form class="qf" id="quoteForm" novalidate>
+
+  <div class="qf-block">
+    <h3>Contact Information</h3>
+    <p class="hint">How can we reach you?</p>
+    <div class="grid">
+      <div class="field"><label>First Name <span class="req">*</span></label><input type="text" name="first_name" required><div class="err">Please enter your first name</div></div>
+      <div class="field"><label>Last Name <span class="req">*</span></label><input type="text" name="last_name" required><div class="err">Please enter your last name</div></div>
+      <div class="field"><label>Email <span class="req">*</span></label><input type="email" name="email" required><div class="err">Please enter a valid email</div></div>
+      <div class="field"><label>Phone <span class="req">*</span></label><input type="tel" name="phone" required><div class="err">Please enter your phone number</div></div>
+      <div class="field"><label>Company</label><input type="text" name="company"></div>
+      <div class="field"><label>Location / Address</label><input type="text" name="location"></div>
+    </div>
+  </div>
+
+  <div class="qf-block">
+    <h3>About Your Build</h3>
+    <p class="hint">Help us understand what you're looking for</p>
+    <div class="grid">
+      <div class="field"><label>Intended Use <span class="req">*</span></label>
+        <small class="help">Who it's for and where it'll live — your home, a business, events, training, etc.</small>
+        <select name="intended_use" required>
+          <option value="">— Select —</option>
+          <option>Personal / Home Use</option><option>Commercial / Business</option><option>Racing Team</option>
+          <option>Entertainment Venue</option><option>Corporate Events</option><option>Training / Driver Development</option><option>Other</option>
+        </select><div class="err">Please select an intended use</div></div>
+      <div class="field"><label>Budget Range</label>
+        <small class="help">A rough idea of what you'd like to spend — we build to fit your budget.</small>
+        <select name="budget">
+          <option value="">— Select —</option>
+          <option>Under $5,000</option><option>$5,000 – $10,000</option><option>$10,000 – $20,000</option>
+          <option>$20,000 – $35,000</option><option>$35,000 – $50,000</option><option>$50,000+</option><option>Not sure yet</option>
+        </select></div>
+      <div class="field"><label>Timeline</label>
+        <small class="help">When you'd like to have it.</small>
+        <select name="timeline">
+          <option value="">— Select —</option>
+          <option>As soon as possible</option><option>1–2 weeks</option><option>Within a month</option>
+          <option>2–3 months</option><option>Flexible / No rush</option><option>Just exploring options</option>
+        </select></div>
+      <div class="field"><label>Number of Simulators</label>
+        <small class="help">How many setups you need.</small>
+        <select name="quantity">
+          <option>1 Simulator</option><option>2 Simulators</option><option>3 Simulators</option><option>4 Simulators</option><option>5+ Simulators</option>
+        </select></div>
+    </div>
+  </div>
+
+  <div class="qf-block">
+    <h3>Cockpit &amp; Seating</h3>
+    <p class="hint">Select "Not sure" if you'd like our recommendation</p>
+    <div class="grid">
+      <div class="field"><label>Chassis Preference</label>
+        <small class="help">The frame you sit in. GT sits you upright like a sports car; Formula reclines you like an F1 car.</small>
+        <select name="chassis"><option value="">— Select —</option><option>GT</option><option>Formula</option><option>Not Sure Yet</option></select></div>
+      <div class="field"><label>Monitor Mount</label>
+        <small class="help">How the screen(s) are held up — on the rig itself or on a separate stand.</small>
+        <select name="monitor_mount">
+          <option>Not sure / Open to suggestion</option><option>Single Free-Standing</option><option>Triple Free-Standing</option>
+          <option>Integrated Single</option><option>Integrated Free-Standing</option><option>Other (specify in notes)</option>
+        </select></div>
+      <div class="field full"><label>Seat Preferences</label>
+        <small class="help">Any seat style, size, or color you have in mind — totally optional.</small>
+        <input type="text" name="seat" placeholder="Brand, size, color, reclining…"></div>
+    </div>
+  </div>
+
+  <div class="qf-block">
+    <h3>Controls &amp; Input</h3>
+    <p class="hint">Steering, pedals, and accessories</p>
+    <div class="grid">
+      <div class="field"><label>Wheel / Motor</label>
+        <small class="help">The motor the wheel attaches to. "Direct drive" gives the most realistic force feedback.</small>
+        <input type="text" name="wheel_motor" placeholder="e.g. direct drive, brand"></div>
+      <div class="field"><label>Steering Wheel</label>
+        <small class="help">The wheel you hold — round for GT cars, flat-bottom for Formula.</small>
+        <input type="text" name="steering_wheel" placeholder="GT, Formula, brand…"></div>
+      <div class="field"><label>Pedals</label>
+        <small class="help">Gas, brake, and clutch. "Load cell" pedals feel like a real car's brake.</small>
+        <input type="text" name="pedals" placeholder="2 or 3 pedal, load cell…"></div>
+      <div class="field"><label>Shifter</label>
+        <small class="help">A separate gear lever, like a manual stick shift. Optional.</small>
+        <select name="shifter"><option>Not sure</option><option>Yes, I want a shifter</option><option>No shifter needed</option></select></div>
+      <div class="field"><label>Handbrake</label>
+        <small class="help">A pull lever for sliding the car — great for rally and drift. Optional.</small>
+        <select name="handbrake"><option>Not sure</option><option>Yes, I want a handbrake</option><option>No handbrake needed</option></select></div>
+      <div class="field"><label>Button Box</label>
+        <small class="help">Extra buttons and switches for in-car controls. Optional.</small>
+        <select name="button_box"><option>Not sure</option><option>Yes, I want a button box</option><option>No button box needed</option></select></div>
+    </div>
+  </div>
+
+  <div class="qf-block">
+    <h3>Display &amp; Technology</h3>
+    <p class="hint">Screens, PC, and visual setup</p>
+    <div class="grid">
+      <div class="field"><label>Screen Setup</label>
+        <small class="help">How you'll see the track — one screen, a big ultrawide, three screens, or VR.</small>
+        <select name="screen_setup">
+          <option>Not sure / Open to suggestion</option><option>Single Screen</option><option>Ultrawide 49"</option>
+          <option>Triple Screens</option><option>VR Only</option><option>Other (specify in notes)</option>
+        </select></div>
+      <div class="field"><label>VR Headset</label>
+        <small class="help">A headset for a fully immersive, look-around view — instead of or alongside screens.</small>
+        <select name="vr"><option>Not sure</option><option>Yes, I want VR</option><option>Yes, in addition to screens</option><option>No VR needed</option></select></div>
+      <div class="field full"><label>PC Preferences</label>
+        <small class="help">The computer that runs everything. Give us a budget or leave it to us.</small>
+        <input type="text" name="pc" placeholder="Budget, GPU, anything specific…"></div>
+    </div>
+  </div>
+
+  <div class="qf-block">
+    <h3>Immersion &amp; Motion</h3>
+    <p class="hint">Haptics, motion platforms, and audio</p>
+    <div class="grid">
+      <div class="field"><label>Haptics / Tactile Feedback</label>
+        <small class="help">Vibrations you feel through the seat — bumps, the engine, losing grip.</small>
+        <select name="haptics"><option>Not Sure</option><option>Yes</option><option>No</option></select></div>
+      <div class="field"><label>Motion Platform</label>
+        <small class="help">The whole rig physically tilts and moves as you drive — the most immersive option.</small>
+        <select name="motion"><option>Not Sure</option><option>Yes</option><option>No</option></select></div>
+      <div class="field full"><label>Audio</label>
+        <small class="help">How you'll hear it — headphones, speakers, or full surround sound.</small>
+        <select name="audio">
+          <option>Not sure / Open to suggestion</option><option>Headphones</option><option>Standard Speakers</option>
+          <option>Premium Surround Sound</option><option>Other (specify in notes)</option>
+        </select></div>
+    </div>
+  </div>
+
+  <div class="qf-block">
+    <h3>Services &amp; Delivery</h3>
+    <p class="hint">Build, delivery, and installation options</p>
+    <div class="grid">
+      <div class="field"><label>Professional Build &amp; Assembly</label>
+        <small class="help">We build and assemble it for you, or you put it together yourself.</small>
+        <select name="build_assembly"><option>Not Sure</option><option>Yes</option><option>No, I'll build it</option></select></div>
+      <div class="field"><label>Delivery Needed?</label>
+        <small class="help">We deliver (and can set it up), or you pick it up from us.</small>
+        <select name="delivery"><option>Not Sure</option><option>Yes</option><option>No, I'll pick up</option></select></div>
+      <div class="field full"><label>Delivery / Installation Address</label>
+        <small class="help">Where we'd ship or set it up, if applicable.</small>
+        <input type="text" name="delivery_address"></div>
+    </div>
+  </div>
+
+  <div class="qf-block">
+    <h3>Additional Notes</h3>
+    <p class="hint">Anything else we should know?</p>
+    <div class="field"><textarea name="notes" placeholder="Tell us anything that will help us build your perfect setup…"></textarea></div>
+  </div>
+
+  <div class="submit-row">
+    <button type="submit" class="qf-btn" id="qfSubmit">Submit Quote Request</button>
+    <p class="submit-note">We typically respond within 1–2 business days.</p>
+    <p class="qf-status" id="qfStatus"></p>
+  </div>
+</form>
+
+<div class="qf-success" id="qfSuccess">
+  <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+  <h3>Quote Request Submitted!</h3>
+  <p>Thank you for your interest in a custom Velocity Pro Sims racing simulator. Our team will review your request and get back to you within 1–2 business days.</p>
+</div>
+
+<script>
+  // EmailJS config (same account/service/template as the live turnkey form)
+  const EMAILJS_PUBLIC_KEY = 'ea3jgX2jgaRfO2JyK';
+  const EMAILJS_SERVICE_ID = 'service_e8quu9b';
+  const EMAILJS_NOTIFY_TEMPLATE = 'template_zsgll86';
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+
+  const form = document.getElementById('quoteForm');
+  const statusEl = document.getElementById('qfStatus');
+  const submitBtn = document.getElementById('qfSubmit');
+
+  // tell the parent page how tall we are so the iframe can size itself
+  function postHeight(){
+    const h = document.body.scrollHeight;
+    if (window.parent) window.parent.postMessage({vpsQuoteHeight: h}, '*');
+  }
+  window.addEventListener('load', postHeight);
+  window.addEventListener('resize', postHeight);
+  new ResizeObserver(postHeight).observe(document.body);
+
+  function validate(){
+    let ok = true;
+    form.querySelectorAll('[required]').forEach(el=>{
+      const field = el.closest('.field');
+      let bad = !el.value.trim();
+      if (el.type==='email' && el.value && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value)) bad = true;
+      field.classList.toggle('invalid', bad);
+      if (bad) ok = false;
+    });
+    return ok;
+  }
+  form.addEventListener('input', e=>{ const f=e.target.closest('.field'); if(f) f.classList.remove('invalid'); });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    statusEl.textContent=''; statusEl.classList.remove('error');
+    if(!validate()){ statusEl.textContent='Please fill in the required fields above.'; statusEl.classList.add('error'); postHeight(); return; }
+
+    const d = Object.fromEntries(new FormData(form).entries());
+    const line = (k,v)=> v && String(v).trim() ? `${k}: ${v}\n` : '';
+    const message =
+      '— CONTACT —\n'+
+      line('Name', `${d.first_name||''} ${d.last_name||''}`)+line('Email', d.email)+line('Phone', d.phone)+line('Company', d.company)+line('Location', d.location)+
+      '\n— BUILD —\n'+
+      line('Intended Use', d.intended_use)+line('Budget', d.budget)+line('Timeline', d.timeline)+line('Number of Simulators', d.quantity)+
+      '\n— COCKPIT & SEATING —\n'+
+      line('Chassis', d.chassis)+line('Monitor Mount', d.monitor_mount)+line('Seat Preferences', d.seat)+
+      '\n— CONTROLS —\n'+
+      line('Wheel / Motor', d.wheel_motor)+line('Steering Wheel', d.steering_wheel)+line('Pedals', d.pedals)+line('Shifter', d.shifter)+line('Handbrake', d.handbrake)+line('Button Box', d.button_box)+
+      '\n— DISPLAY —\n'+
+      line('Screen Setup', d.screen_setup)+line('VR Headset', d.vr)+line('PC Preferences', d.pc)+
+      '\n— IMMERSION & MOTION —\n'+
+      line('Haptics', d.haptics)+line('Motion Platform', d.motion)+line('Audio', d.audio)+
+      '\n— SERVICES & DELIVERY —\n'+
+      line('Build & Assembly', d.build_assembly)+line('Delivery Needed', d.delivery)+line('Delivery Address', d.delivery_address)+
+      '\n— NOTES —\n'+ (d.notes||'(none)');
+
+    const params = Object.assign({}, d, {
+      full_name: `${d.first_name||''} ${d.last_name||''}`.trim(),
+      from_name: `${d.first_name||''} ${d.last_name||''}`.trim(),
+      reply_to: d.email,
+      to_name: 'Velocity Pro Sims',
+      message: message
+    });
+
+    submitBtn.disabled = true; submitBtn.textContent = 'Sending…';
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NOTIFY_TEMPLATE, params)
+      .then(()=>{
+        form.style.display='none';
+        document.getElementById('qfSuccess').style.display='block';
+        postHeight();
+        if(window.parent) window.parent.postMessage({vpsQuoteSubmitted:true}, '*');
+      })
+      .catch(err=>{
+        submitBtn.disabled=false; submitBtn.textContent='Submit Quote Request';
+        statusEl.textContent='Sorry, something went wrong sending your request. Please call us at (954) 296-6197.';
+        statusEl.classList.add('error');
+        postHeight();
+        console.error('EmailJS error:', err);
+      });
+  });
+</script>
+</body>
+</html>
