@@ -442,7 +442,7 @@
     </div>
     <div class="disc-grid">
       <div class="disc-card" role="button" tabindex="0" onclick="VPSGallery.open('formula')" onkeydown="VPSGallery.key(event,'formula')">
-        <div class="dc-img" style="background-image:url('https://jcttl1.github.io/vps-home/formula-card.jpg')" role="img" aria-label="Formula simulator build"></div>
+        <div class="dc-img" style="background-image:url('https://jcttl1.github.io/vps-home/formula-card.jpg')" role="img" aria-label="Formula racing simulator build"></div>
         <div class="dc-body">
           <h3>Formula</h3>
           <p>Open-wheel cockpit, high-downforce feel.</p>
@@ -450,7 +450,7 @@
         </div>
       </div>
       <div class="disc-card" role="button" tabindex="0" onclick="VPSGallery.open('gt')" onkeydown="VPSGallery.key(event,'gt')">
-        <div class="dc-img" style="background-image:url('https://jcttl1.github.io/vps-home/gt-card.jpg')" role="img" aria-label="GT simulator build"></div>
+        <div class="dc-img" style="background-image:url('https://jcttl1.github.io/vps-home/gt-card.jpg')" role="img" aria-label="GT racing simulator build"></div>
         <div class="dc-body">
           <h3>GT</h3>
           <p>Sports-car position, smooth and planted.</p>
@@ -458,7 +458,7 @@
         </div>
       </div>
       <div class="disc-card" role="button" tabindex="0" onclick="VPSGallery.open('rally')" onkeydown="VPSGallery.key(event,'rally')">
-        <div class="dc-img" style="background-image:url('https://jcttl1.github.io/vps-home/rally-card.jpg')" role="img" aria-label="Rally simulator build"></div>
+        <div class="dc-img" style="background-image:url('https://jcttl1.github.io/vps-home/rally-card.jpg')" role="img" aria-label="Rally and drifting racing simulator build"></div>
         <div class="dc-body">
           <h3>Rally / Drifting</h3>
           <p>Handbrakes, sequential shifters, big slides.</p>
@@ -466,7 +466,7 @@
         </div>
       </div>
       <div class="disc-card" role="button" tabindex="0" onclick="VPSGallery.open('oval')" onkeydown="VPSGallery.key(event,'oval')">
-        <div class="dc-img" style="background-image:url('https://jcttl1.github.io/vps-home/oval-card.jpg')" role="img" aria-label="Oval simulator build"></div>
+        <div class="dc-img" style="background-image:url('https://jcttl1.github.io/vps-home/oval-card.jpg')" role="img" aria-label="Oval racing simulator build"></div>
         <div class="dc-body">
           <h3>Oval</h3>
           <p>Built for the draft and the banking.</p>
@@ -697,7 +697,6 @@ window.VPS_PORTFOLIO = {
 (function(){
   var last = 0;
   function measure(){
-    // content height only (body box), NOT the viewport-filling documentElement
     var h = Math.ceil(document.body.getBoundingClientRect().height);
     if (h && Math.abs(h - last) > 1){ last = h; try{ parent.postMessage({vpsHomeHeight: h}, '*'); }catch(e){} }
   }
