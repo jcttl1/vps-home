@@ -793,6 +793,7 @@
       document.getElementById('successContainer').style.display = 'block';
       document.getElementById('successRef').textContent = 'Reference: ' + refNumber;
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      try{ if(window.parent && window.parent!==window) window.parent.postMessage({vpsQuoteSubmitted:true},'*'); }catch(e){}
 
     } catch (err) {
       console.error('Error submitting quote request:', err);

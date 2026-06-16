@@ -631,6 +631,17 @@ window.VPS_PORTFOLIO = {
       var f = document.getElementById('quoteFrame');
       var h = e.data.vpsQuoteHeight + 'px';
       if (f && f.style.height !== h) f.style.height = h;
+    } else if (e.data && e.data.vpsQuoteSubmitted){
+      setTimeout(function(){
+        var qf = document.getElementById('quoteFrame');
+        if (!qf) return;
+        var y = qf.getBoundingClientRect().top + (window.pageYOffset || 0) - 80;
+        if (window.parent && window.parent !== window){
+          try{ parent.postMessage({vpsScrollTo: y}, '*'); }catch(err){}
+        } else {
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 250);
     }
   });
 
