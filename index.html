@@ -632,7 +632,7 @@ window.VPS_PORTFOLIO = {
       var h = e.data.vpsQuoteHeight + 'px';
       if (f && f.style.height !== h) f.style.height = h;
     } else if (e.data && e.data.vpsQuoteSubmitted){
-      setTimeout(function(){
+      var vpsDoScroll = function(){
         var qf = document.getElementById('quoteFrame');
         if (!qf) return;
         var y = qf.getBoundingClientRect().top + (window.pageYOffset || 0) - 80;
@@ -641,7 +641,9 @@ window.VPS_PORTFOLIO = {
         } else {
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
-      }, 250);
+      };
+      setTimeout(vpsDoScroll, 600);
+      setTimeout(vpsDoScroll, 1150);
     }
   });
 
