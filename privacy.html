@@ -136,5 +136,24 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  // If this page is loaded inside the Shopify embed iframe, fit the frame to our
+  // own height and scroll the parent to the top so there is no leftover gap.
+  if (window.parent && window.parent !== window) {
+    var post = function(){
+      var h = Math.ceil(document.body.getBoundingClientRect().height);
+      try { window.parent.postMessage({vpsHomeHeight:h}, "*"); } catch(e){}
+    };
+    window.addEventListener("load", function(){
+      post();
+      try { window.parent.postMessage({vpsScrollTo:0}, "*"); } catch(e){}
+    });
+    window.addEventListener("resize", post);
+    if (window.ResizeObserver){ try { new ResizeObserver(post).observe(document.body); } catch(e){} }
+  }
+})();
+</script>
+
 </body>
 </html>
