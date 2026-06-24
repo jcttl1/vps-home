@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- VPS standalone landing build v4 (green/Rajdhani/Saira, single screen) -->
+<!-- VPS standalone landing build v5 (embed-aware height reporting) -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>if(window.self!==window.top){document.documentElement.classList.add('embedded');}</script>
 <title>Velocity Pro Sims — Buy, Rent, or Shop Racing Simulators</title>
 <meta name="description" content="Velocity Pro Sims — custom racing simulators, corporate event rentals, and pro sim-racing gear. Buy a simulator, rent for an event, or shop products. Daytona Beach, FL." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -178,6 +179,10 @@
   @media (prefers-reduced-motion:reduce){
     .intro,.paths .card,.reassure{animation:none;}
   }
+
+  /* Embedded in the Shopify homepage (iframe): use natural height so the theme can size the frame to fit */
+  .embedded .stage{min-height:auto;}
+  .embedded main.center{padding:48px 0 42px;}
 </style>
 </head>
 <body>
@@ -280,6 +285,20 @@
       </div>
     </footer>
   </div>
+
+  <script>
+    // When embedded in the Shopify homepage, report our height so the theme sizes the iframe to fit.
+    (function(){
+      if (window.self === window.top) return;
+      function report(){
+        var h = Math.ceil(document.body.getBoundingClientRect().height);
+        try { parent.postMessage({ vpsHomeHeight: h }, '*'); } catch(e){}
+      }
+      window.addEventListener('load', report);
+      window.addEventListener('resize', function(){ setTimeout(report, 80); });
+      [100,400,900,1600,2500].forEach(function(t){ setTimeout(report, t); });
+    })();
+  </script>
 
 </body>
 </html>
