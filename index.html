@@ -130,7 +130,7 @@
 
   /* ---------- Mobile ---------- */
   @media (max-width:860px){
-    .panels{flex-direction:column;}
+    .stage{min-height:0;}.panels{flex-direction:column;}
     .panel{flex:0 0 auto;min-height:300px;}
     .panel .pnum{top:auto;bottom:22px;right:20px;font-size:64px;}
     .pbody{padding:34px 22px;}
@@ -239,7 +239,7 @@
     (function(){
       if (window.self === window.top) return;
       function report(){
-        var h = (window.innerWidth > 860) ? 12 : Math.ceil(document.body.getBoundingClientRect().height);
+        var h = (window.innerWidth > 860) ? 12 : Math.ceil(document.querySelector('.stage').scrollHeight);
         try { parent.postMessage({ vpsHomeHeight: h }, '*'); } catch(e){}
       }
       window.addEventListener('load', report);
