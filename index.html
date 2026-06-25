@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- VPS standalone landing build v12 (bold split panels, centered content) -->
+<!-- VPS standalone landing build v13 (split panels, embed-fit reporting) -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>if(window.self!==window.top){document.documentElement.classList.add('embedded');}</script>
@@ -131,7 +131,7 @@
   /* ---------- Mobile ---------- */
   @media (max-width:860px){
     .panels{flex-direction:column;}
-    .panel{flex:1 1 auto;min-height:34vh;}
+    .panel{flex:0 0 auto;min-height:300px;}
     .panel .pnum{top:auto;bottom:22px;right:20px;font-size:64px;}
     .pbody{padding:34px 22px;}
     .pdesc{max-height:90px;opacity:1;margin-top:12px;transform:none;}
@@ -239,7 +239,7 @@
     (function(){
       if (window.self === window.top) return;
       function report(){
-        var h = Math.ceil(document.body.getBoundingClientRect().height);
+        var h = (window.innerWidth > 860) ? 12 : Math.ceil(document.body.getBoundingClientRect().height);
         try { parent.postMessage({ vpsHomeHeight: h }, '*'); } catch(e){}
       }
       window.addEventListener('load', report);
