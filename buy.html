@@ -699,5 +699,21 @@ window.VPS_PORTFOLIO = {
 <script>
 (function(){var last=0;function measure(){var h=Math.ceil(document.body.getBoundingClientRect().height);if(h&&Math.abs(h-last)>1){last=h;try{parent.postMessage({vpsHomeHeight:h},'*');}catch(e){}}}window.addEventListener('load',measure);window.addEventListener('resize',function(){setTimeout(measure,80);});window.addEventListener('message',function(e){if(e&&e.data&&e.data.vpsQuoteHeight){setTimeout(measure,90);}});var n=0,t=setInterval(function(){measure();if(++n>40)clearInterval(t);},350);})();
 </script>
+<script>
+(function(){
+  if (window.self === window.top) return;
+  if (!window.VPSGallery || !window.VPS_PORTFOLIO) return;
+  var nativeOpen = window.VPSGallery.open;
+  function forward(cat){
+    var data = (window.VPS_PORTFOLIO || {})[cat];
+    if (!data || !data.items || !data.items.length) return;
+    var payload = { label: data.label || '', index: 0, items: data.items.map(function(it){ return { src: it.src, caption: it.caption || '' }; }) };
+    try { parent.postMessage({ vpsLightbox: payload }, '*'); }
+    catch (e) { if (typeof nativeOpen === 'function') nativeOpen(cat); }
+  }
+  window.VPSGallery.open = forward;
+  window.VPSGallery.key = function(e, cat){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); forward(cat); } };
+})();
+</script>
 </body>
 </html>
