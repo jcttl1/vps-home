@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- VPS standalone landing build v7 (clean, embed fills viewport) -->
+<!-- VPS standalone landing build v8 (clean, content top, dark fills below) -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>if(window.self!==window.top){document.documentElement.classList.add('embedded');}</script>
@@ -145,8 +145,9 @@
   .paths .card:nth-child(3){animation-delay:.24s;}
   .reassure{animation:riseIn .7s var(--ease) both;animation-delay:.32s;}
 
-  /* ---------- Embedded in Shopify homepage (fill the iframe, center content) ---------- */
-  .embedded main.center{padding:54px 0;}
+  /* ---------- Embedded in Shopify homepage (content at top, dark fills below) ---------- */
+  .embedded .stage{min-height:auto;}
+  .embedded main.center{padding:48px 0 36px;}
 
   /* ---------- Responsive ---------- */
   @media (max-width:980px){
