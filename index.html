@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- VPS standalone landing build v11 (bold split panels) -->
+<!-- VPS standalone landing build v12 (bold split panels, centered content) -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>if(window.self!==window.top){document.documentElement.classList.add('embedded');}</script>
@@ -60,7 +60,8 @@
   /* ---------- Panels ---------- */
   .panels{position:relative;z-index:2;flex:1 1 auto;display:flex;min-height:0;}
   .panel{
-    position:relative;flex:1 1 0;min-width:0;overflow:hidden;display:block;
+    position:relative;flex:1 1 0;min-width:0;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:center;
     border-left:1px solid rgba(0,0,0,.55);
     transition:flex-grow .55s var(--ease);
   }
@@ -76,9 +77,9 @@
   .panel .pnum{position:absolute;top:104px;right:clamp(16px,2vw,28px);z-index:3;
     font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(50px,5vw,84px);line-height:1;
     color:rgba(255,255,255,.13);transition:color .55s var(--ease);letter-spacing:.02em;}
-  .pbody{position:absolute;z-index:3;left:0;right:0;bottom:0;
+  .pbody{position:relative;z-index:3;
     display:flex;flex-direction:column;align-items:flex-start;
-    padding:0 clamp(22px,2.4vw,40px) clamp(56px,11vh,132px);}
+    padding:0 clamp(22px,2.4vw,40px);}
   .plabel{font-family:'Rajdhani',sans-serif;text-transform:uppercase;letter-spacing:.18em;
     font-size:12.5px;font-weight:600;color:var(--accent-2);margin-bottom:12px;}
   .panel h2{font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase;
@@ -132,7 +133,7 @@
     .panels{flex-direction:column;}
     .panel{flex:1 1 auto;min-height:34vh;}
     .panel .pnum{top:auto;bottom:22px;right:20px;font-size:64px;}
-    .pbody{padding:0 22px 26px;}
+    .pbody{padding:34px 22px;}
     .pdesc{max-height:90px;opacity:1;margin-top:12px;transform:none;}
     .panel .accentline{width:46px;}
     .topbar::before{height:120px;}
